@@ -9,6 +9,19 @@
  *  - a Mini-class device (streaming, recording, ISO, UVC out) and
  *  - a big-switcher (SuperSource, multi-M/E, HyperDeck) matching the real
  *    autosave XML the generator is validated against.
+ *
+ * THIS CATALOG MUST STAY AUTHORITATIVE FOR BOTH OUTPUT PATHS. Three things
+ * read a ModelProfile: the editor UI (which tabs and options to show),
+ * xmlGenerator (which sections to emit) and buildApplySteps (which live
+ * setters to run). Adding a model or a field in one consumer instead of here
+ * makes the generated XML and the applied settings diverge for the same
+ * declared configuration — and nothing in either path would notice.
+ *
+ * Note also that the XML path can express MORE than the live path can apply:
+ * UVC routing, recording quality and media-pool contents are not settable over
+ * the Ethernet protocol, and are reported as folder-export-only steps rather
+ * than silently skipped. Keep that distinction explicit rather than implying
+ * the two paths are equivalent.
  */
 
 export type ModelId = 'atem-mini-extreme-iso' | 'atem-4me-broadcast-studio-4k'
@@ -26,7 +39,10 @@ export interface ModelProfile {
   id: ModelId
   /** Human label shown in the model dropdown. */
   label: string
-  /** Exact string ATEM Software Control writes in the `<Profile product="...">` attribute. */
+  /** Exact string ATEM Software Control writes in the `<Profile product="...">`
+   *  attribute. It has to match character for character — a near-miss produces
+   *  a file ATEM Software Control refuses to load, with no clue as to why.
+   *  Copy it out of a real save file rather than typing it. */
   product: string
   profileMajorVersion: number
   profileMinorVersion: number

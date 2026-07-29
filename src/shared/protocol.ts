@@ -63,4 +63,10 @@ export interface FleetAdminApi {
     /** Connect to a device and apply the settable subset of its config. */
     apply: (device: DeviceConfig) => Promise<ApplyResult>
   }
+  diag: {
+    /** Write one JSON file describing the app's state and return its path. */
+    collect: () => Promise<string>
+    /** Reveal the log folder in the OS file manager. */
+    openLogFolder: () => Promise<string>
+  }
 }

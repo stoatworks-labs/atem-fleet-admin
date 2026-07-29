@@ -383,3 +383,74 @@ select:focus {
   text-align: center;
   max-width: 420px;
 }
+
+/* --- Diagnostics -------------------------------------------------------- */
+/* Collapsed by default: a support tool, not something wanted during a show. */
+
+.diagnostics-panel {
+  margin-top: 8px;
+}
+
+.diagnostics-toggle {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 3px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.diagnostics-toggle:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.diagnostics-body {
+  margin-top: 8px;
+  padding: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.diagnostics-hint {
+  margin: 0 0 8px;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.diagnostics-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.diagnostics-actions button {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.diagnostics-actions button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.diagnostics-actions button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+/* Holds a filesystem path, so it must wrap rather than overflow its panel. */
+.diagnostics-status {
+  margin: 8px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}

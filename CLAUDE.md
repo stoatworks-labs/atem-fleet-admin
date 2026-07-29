@@ -19,3 +19,11 @@ Provision many Blackmagic ATEMs at once via model-aware forms → loadable XML +
 - Two run modes: Electron (`dev`) and web (`web`). Verify the mode your change affects.
 - Model-aware forms → keep the ATEM model catalog authoritative for both XML export and live apply.
 - Public repo. Multi-platform release CI; cross-compile macOS x86_64 on macos-14 (never macos-13). "Commit" = commit **and** push.
+
+## Diagnostics
+
+Log via `say`/`log` from `src/main/diag/`, never `console`. `installElectronDiagnostics()`
+hooks `render-process-gone` and `child-process-gone` — a dead renderer raises nothing the
+main process's `uncaughtException` handler can see. `diag:collect` and `diag:openLogFolder`
+are registered over IPC but **no UI calls them yet**; wiring a button is outstanding.
+See [docs/diagnostics.md](docs/diagnostics.md).

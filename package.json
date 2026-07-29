@@ -36,6 +36,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "atem-connection": "^3.9.0",
     "express": "^4.21.2",
+    "pino": "^10.3.1",
     "zustand": "^5.0.2"
   },
   "devDependencies": {

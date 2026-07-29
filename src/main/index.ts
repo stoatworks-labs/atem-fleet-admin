@@ -6,6 +6,26 @@ import { generateDeviceXml } from './services/xmlGenerator'
 import { exportFleet } from './services/folderExporter'
 import { applyToDevice } from './services/networkApply'
 import { openFleet, pickExportDir, saveFleet } from './services/fleetStore'
+import { collectDiagnostics, init as initDiag, say } from './diag/index.js'
+import { installElectronDiagnostics } from './diag/electron.js'
+
+// Before anything that can fail, so a failure during startup is logged and
+// captured like any other. An Electron app is several processes, so the
+// renderer and GPU hooks go in too - neither raises anything the main
+// process's uncaughtException handler can see.
+initDiag({
+  app: 'atem-fleet-admin',
+  envPrefix: 'ATEM_FLEET_ADMIN',
+  version: '0.2.0',
+  cwd: app_diag_cwd()
+})
+installElectronDiagnostics()
+
+if (process.argv.includes('--collect-diagnostics')) {
+  // stdout, so it can be used in a script; logging went to stderr.
+  say.info(collectDiagnostics())
+  app.exit(0)
+}
 
 function createWindow(): BrowserWindow {
   const mainWindow = new BrowserWindow({
@@ -67,3 +87,10 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
+
+
+/** Repo root when running from source; irrelevant once packaged, where
+ *  there is no .git and the git revision reads as 'unknown'. */
+function app_diag_cwd(): string {
+  return join(__dirname, '../../..')
+}

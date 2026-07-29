@@ -100,6 +100,14 @@ provisioning logic (`src/shared` + `src/main/services`):
 The React UI is identical across both; only `window.api` differs (Electron IPC
 vs HTTP — see [`src/web/webApi.ts`](src/web/webApi.ts)).
 
+## Documentation
+
+| Doc | Contents |
+|---|---|
+| [docs/USER-GUIDE.md](docs/USER-GUIDE.md) | Provisioning a fleet: both output paths, what to check, troubleshooting |
+| [docs/API.md](docs/API.md) | HTTP + IPC surfaces, the model catalog, the full apply-step table, export layout |
+| [docs/DEVELOPING.md](docs/DEVELOPING.md) | Two run targets, three tsconfigs, and the catalog invariant |
+
 ## Develop
 
 ```bash

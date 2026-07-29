@@ -15,7 +15,14 @@ import type { DeviceConfig, FleetProject } from '../../shared/config'
 import type { ExportResult } from '../../shared/protocol'
 import { generateDeviceXml } from './xmlGenerator'
 
-/** Make a string safe to use as a folder name across platforms. */
+/**
+ * Make a string safe to use as a folder name across platforms.
+ *
+ * Does NOT unique the result: two device (or fleet) names that sanitize to the
+ * same string get the same folder, and the second export overwrites the first
+ * with no warning. "Studio 1" and "Studio/1" both become "Studio_1". If that
+ * ever needs fixing, do it here rather than at the call sites.
+ */
 export function sanitizeName(name: string): string {
   const cleaned = name
     .trim()
@@ -25,6 +32,17 @@ export function sanitizeName(name: string): string {
   return cleaned || 'Untitled'
 }
 
+/**
+ * Write one device's folder: config.xml plus a Media/ directory of copied
+ * media-pool files.
+ *
+ * A media item with no path, or whose copy throws, is recorded in
+ * `mediaMissing` and the export CONTINUES — it is not an error and the run
+ * still succeeds. That is right (one bad path shouldn't lose a whole fleet
+ * export) and it means a device can report success with an empty Media/
+ * folder, which is exactly what a mistyped or moved source path looks like.
+ * Callers must surface mediaMissing; the UI and docs both do.
+ */
 async function exportDevice(
   device: DeviceConfig,
   fleetDir: string
@@ -57,7 +75,14 @@ async function exportDevice(
   return { name: device.name, dir, xmlPath, mediaCopied, mediaMissing }
 }
 
-/** Write every device in the fleet under `outputDir`. */
+/**
+ * Write every device in the fleet under `outputDir`.
+ *
+ * Sequential rather than parallel, deliberately: these are user-visible writes
+ * to a chosen directory, and a predictable order makes a partial run easier to
+ * reason about than a faster one. Per-device results (including mediaMissing)
+ * come back in fleet order.
+ */
 export async function exportFleet(fleet: FleetProject, outputDir: string): Promise<ExportResult> {
   const fleetDir = join(outputDir, sanitizeName(fleet.name))
   await fs.mkdir(fleetDir, { recursive: true })

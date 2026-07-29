@@ -24,6 +24,12 @@ const api: FleetAdminApi = {
   network: {
     apply: (device: DeviceConfig): Promise<ApplyResult> =>
       ipcRenderer.invoke('network:apply', device)
+  },
+  diag: {
+    /** Write one JSON file describing the app's state and return its path. */
+    collect: (): Promise<string> => ipcRenderer.invoke('diag:collect'),
+    /** Reveal the log folder in the OS file manager. */
+    openLogFolder: (): Promise<string> => ipcRenderer.invoke('diag:openLogFolder')
   }
 }
 

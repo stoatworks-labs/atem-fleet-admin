@@ -1,6 +1,7 @@
 import { DeviceEditor } from './components/DeviceEditor'
 import { ExportBar } from './components/ExportBar'
 import { FleetSidebar } from './components/FleetSidebar'
+import { DiagnosticsPanel } from './components/DiagnosticsPanel'
 import { useFleet } from './store'
 
 function App(): React.JSX.Element {
@@ -36,6 +37,7 @@ function App(): React.JSX.Element {
         <div className="header-actions">
           <button onClick={open}>Open…</button>
           <button onClick={save}>Save…</button>
+          <DiagnosticsPanel />
         </div>
       </header>
 

@@ -10,7 +10,7 @@ ATEMs in one place, build each device's configuration through model-aware forms
    over the network via [`atem-connection`](https://www.npmjs.com/package/atem-connection).
 
 Built with electron-vite + React + TypeScript, matching the stack of its sibling
-[animATEM](https://github.com/allansargeant/animATEM).
+[animATEM](https://github.com/stoatworks-labs/animATEM).
 
 ![Architecture](docs/architecture.svg)
 
@@ -90,11 +90,11 @@ provisioning logic (`src/shared` + `src/main/services`):
    installers on the main release. Uses IPC + native file dialogs.
 2. **Web app + av-launcher tray shell** — a local Node server (`src/server`)
    serving the same React UI in the browser, wrapped by the fleet's
-   [av-launcher](https://github.com/allansargeant/av-launcher) shell so it lives
+   [av-launcher](https://github.com/stoatworks-labs/av-launcher) shell so it lives
    in the menu bar (pick interface + port, Start/Stop, Open). Ships as a
    self-contained desktop app with an embedded Node runtime — see
    [`launcher/`](launcher). This matches how the sibling
-   [atem-overseer](https://github.com/allansargeant/atem-overseer) ships. The
+   [atem-overseer](https://github.com/stoatworks-labs/atem-overseer) ships. The
    tray app ships for macOS, Windows and Linux (`.deb`/`.rpm`).
 
 The React UI is identical across both; only `window.api` differs (Electron IPC

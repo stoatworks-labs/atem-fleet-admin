@@ -3,10 +3,10 @@
 A small menu-bar desktop app for ATEM Fleet Admin: pick a network interface +
 port, Start/Stop the server, open the app in your browser, and run it from the
 system tray. Built with [Tauri v2](https://tauri.app) using the fleet's reusable
-[av-launcher](https://github.com/allansargeant/av-launcher) shell.
+[av-launcher](https://github.com/stoatworks-labs/av-launcher) shell.
 
 Download an installer from
-[Releases](https://github.com/allansargeant/atem-fleet-admin/releases):
+[Releases](https://github.com/stoatworks-labs/atem-fleet-admin/releases):
 macOS `.dmg` (arm64 + x86_64), Windows `.exe`, Linux `.deb` + `.rpm`. (A Linux
 `.AppImage` is provided by the main **Electron** build instead — the tray app
 skips it, since its bundler needs FUSE on CI.)

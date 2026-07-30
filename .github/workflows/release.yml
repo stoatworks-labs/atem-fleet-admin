@@ -42,6 +42,31 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build macOS .pkg installers
+        if: runner.os == 'macOS'
+        shell: bash
+        # electron-builder's own pkg target is not concurrency-safe: every
+        # architecture writes the same scratch distribution.xml and
+        # <appId>.pkg into the output dir, so building x64 and arm64 together
+        # makes one run delete what the other is reading. It is left out of
+        # electron-builder.yml and the .pkg built here instead, one arch at a
+        # time, with the same helper the local release script uses.
+        run: |
+          source scripts/release-lib.sh
+          version="$(node -p "require('./package.json').version")"
+          rl_init "ATEM Fleet Admin" atem-fleet-admin "$version" com.stoatworks.atem-fleet-admin "$PWD/dist"
+          for d in dist/mac dist/mac-arm64 dist/mac-universal; do
+            [ -d "$d" ] || continue
+            app="$(cd "$d" && ls -d *.app 2>/dev/null | head -1)"
+            [ -n "$app" ] || continue
+            case "$d" in
+              */mac)           arch=x64 ;;
+              */mac-arm64)     arch=arm64 ;;
+              */mac-universal) arch=universal ;;
+            esac
+            rl_pkg "macos-$arch" "$d" --app "$app"
+          done
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -49,6 +74,7 @@ jobs:
           path: |
             dist/*.exe
             dist/*.dmg
+            dist/*.pkg
             dist/*.zip
             dist/*.deb
             dist/*.rpm

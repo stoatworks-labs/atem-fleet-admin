@@ -60,6 +60,16 @@ npm install --silent --no-audit --no-fund
 echo "==> electron-vite build"
 npm run build
 
+# Some projects (the presentation-commander pair) create space-free
+# vendor-sdk symlinks under native/ that point outside the project tree.
+# electron-builder refuses to package those, so their own build:* scripts run
+# clean:native-sdk-links first. Honour that here rather than reimplementing it,
+# and skip silently for the projects that have no such script.
+if node -e "process.exit(require('./package.json').scripts?.['clean:native-sdk-links'] ? 0 : 1)" 2>/dev/null; then
+  echo "==> clean:native-sdk-links"
+  npm run clean:native-sdk-links
+fi
+
 # --publish never: this script owns publishing, and any configured provider in
 # electron-builder.yml would otherwise try to upload on its own.
 eb() {

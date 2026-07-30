@@ -7,3 +7,4 @@ out
 out-web
 out-server
 exports
+dist-release/

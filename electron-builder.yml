@@ -11,6 +11,15 @@ files:
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
 mac:
   category: public.app-category.video
+  # Ad-hoc sign every target. Without this electron-builder skips signing
+  # entirely when no Developer ID is installed, and Gatekeeper on Apple
+  # Silicon then refuses the standalone arm64/x64 builds outright
+  # ("is damaged and can't be opened").
+  identity: '-'
+  # Ad-hoc + the default hardened runtime means library validation rejects
+  # every bundled dylib unless disable-library-validation is granted.
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
   target:
     - target: dmg
       arch: [x64, arm64]
@@ -21,10 +30,16 @@ win:
   target:
     - target: nsis
       arch: [x64, arm64]
+    - target: portable
+      arch: [x64, arm64]
+    - target: zip
+      arch: [x64, arm64]
 nsis:
   artifactName: ${name}-${version}-${arch}-setup.${ext}
   oneClick: false
   allowToChangeInstallationDirectory: true
+portable:
+  artifactName: ${name}-${version}-${arch}-portable.${ext}
 linux:
   category: AudioVideo
   maintainer: Allan Sargeant <allan.sargeant@gmail.com>

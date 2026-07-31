@@ -13,24 +13,8 @@ import { promises as fs } from 'fs'
 import { basename, join } from 'path'
 import type { DeviceConfig, FleetProject } from '../../shared/config'
 import type { ExportResult } from '../../shared/protocol'
-import { generateDeviceXml } from './xmlGenerator'
-
-/**
- * Make a string safe to use as a folder name across platforms.
- *
- * Does NOT unique the result: two device (or fleet) names that sanitize to the
- * same string get the same folder, and the second export overwrites the first
- * with no warning. "Studio 1" and "Studio/1" both become "Studio_1". If that
- * ever needs fixing, do it here rather than at the call sites.
- */
-export function sanitizeName(name: string): string {
-  const cleaned = name
-    .trim()
-    .replace(/[<>:"/\\|?*]/g, '_')
-    .replace(/\s/g, '_')
-    .replace(/\.+$/, '')
-  return cleaned || 'Untitled'
-}
+import { sanitizeName } from '../../shared/names'
+import { generateDeviceXml } from '../../shared/xmlGenerator'
 
 /**
  * Write one device's folder: config.xml plus a Media/ directory of copied

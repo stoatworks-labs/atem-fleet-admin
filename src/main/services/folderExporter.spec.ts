@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest'
 import { promises as fs } from 'fs'
 import { tmpdir } from 'os'
 import { join } from 'path'
-import { exportFleet, sanitizeName } from './folderExporter'
+import { exportFleet } from './folderExporter'
+import { sanitizeName } from '../../shared/names'
 import { createDevice, createFleet } from '../../shared/config'
 
 describe('sanitizeName', () => {

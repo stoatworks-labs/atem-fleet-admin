@@ -10,6 +10,8 @@ export function ExportBar({ device }: { device: DeviceConfig | null }): React.JS
   const [applyResult, setApplyResult] = useState<ApplyResult | null>(null)
   const [message, setMessage] = useState<string | null>(null)
 
+  const caps = window.api.capabilities
+
   const generate = async (): Promise<void> => {
     setBusy('export')
     setMessage(null)
@@ -17,8 +19,14 @@ export function ExportBar({ device }: { device: DeviceConfig | null }): React.JS
     try {
       const result = await window.api.export.toFolders(fleet)
       setExportResult(result)
-      if (result)
-        setMessage(`Wrote ${result.devices.length} device folder(s) to ${result.outputDir}`)
+      if (result) {
+        const count = `${result.devices.length} device folder(s)`
+        setMessage(
+          caps.exportKind === 'zip'
+            ? `Downloaded ${result.outputDir} — ${count}.`
+            : `Wrote ${count} to ${result.outputDir}`
+        )
+      }
     } catch (err) {
       setMessage(err instanceof Error ? err.message : String(err))
     } finally {
@@ -50,15 +58,30 @@ export function ExportBar({ device }: { device: DeviceConfig | null }): React.JS
           disabled={!!busy || fleet.devices.length === 0}
           onClick={generate}
         >
-          {busy === 'export' ? 'Generating…' : 'Generate folders'}
+          {busy === 'export'
+            ? 'Generating…'
+            : caps.exportKind === 'zip'
+              ? 'Download folders (.zip)'
+              : 'Generate folders'}
         </button>
-        <button disabled={!!busy || !device || !device.address} onClick={apply}>
-          {busy === 'apply' ? 'Applying…' : 'Connect & apply selected'}
-        </button>
-        {device && !device.address && (
-          <span className="muted">Set a network address on the Project tab to apply live.</span>
+        {caps.networkApply && (
+          <>
+            <button disabled={!!busy || !device || !device.address} onClick={apply}>
+              {busy === 'apply' ? 'Applying…' : 'Connect & apply selected'}
+            </button>
+            {device && !device.address && (
+              <span className="muted">Set a network address on the Project tab to apply live.</span>
+            )}
+          </>
         )}
       </div>
+
+      {!caps.bundlesMedia && fleet.devices.some((d) => d.mediaPool.length > 0) && (
+        <p className="muted">
+          Media files aren&rsquo;t bundled here — a web page can&rsquo;t read a path from your disk.
+          Each device folder carries a <code>MEDIA.txt</code> listing what to load into which slot.
+        </p>
+      )}
 
       {message && <div className="export-message">{message}</div>}
 

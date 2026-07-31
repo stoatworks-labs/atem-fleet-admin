@@ -150,10 +150,10 @@ silently.
 > reconstructed from the protocol and should be validated against a real Mini.
 > The live **Connect & apply** path is the authoritative route for those fields.
 
-## Two ways to run it
+## Three ways to run it
 
-The same tool ships as **two targets** from this one repo, sharing all the
-provisioning logic (`src/shared` + `src/main/services`):
+The same tool ships as **three targets** from this one repo, sharing all the
+provisioning logic (`src/shared`):
 
 1. **Electron desktop app** — the native app (`npm run dev`), packaged as
    installers on the main release. Uses IPC + native file dialogs.
@@ -165,9 +165,34 @@ provisioning logic (`src/shared` + `src/main/services`):
    [`launcher/`](launcher). This matches how the sibling
    [atem-overseer](https://github.com/stoatworks-labs/atem-overseer) ships. The
    tray app ships for macOS, Windows and Linux (`.deb`/`.rpm`).
+3. **Hosted build — no install, no backend.** The same React UI with no server
+   behind it at all (`npm run static:build`), publishable as static assets on a
+   Cloudflare Worker. Every ATEM profile is generated in your own tab by the same
+   `generateDeviceXml` the desktop app runs, and the export arrives as a `.zip`
+   of the identical folder tree. **Nothing is uploaded** — your fleet file never
+   leaves your machine.
 
-The React UI is identical across both; only `window.api` differs (Electron IPC
-vs HTTP — see [`src/web/webApi.ts`](src/web/webApi.ts)).
+The React UI is identical across all three; only `window.api` differs (Electron
+IPC, HTTP, or nothing — see [`src/web/`](src/web)). Each backend declares what it
+can do through `capabilities`, and the UI adapts rather than offering buttons
+that cannot work.
+
+### What the hosted build can't do
+
+| | Desktop / tray | Hosted |
+|---|---|---|
+| Model-aware forms, XML generation | ✅ | ✅ |
+| Export the per-device folder tree | ✅ directories | ✅ `.zip` download |
+| Open / save a fleet project | ✅ | ✅ |
+| Copy media-pool files into the export | ✅ | ❌ `MEDIA.txt` manifest instead |
+| **Connect & apply** over the network | ✅ | ❌ |
+| Diagnostics bundle | ✅ | ❌ |
+
+The two exclusions are the same limitation: a web page cannot open a TCP socket
+to a switcher on your LAN, and cannot read a file from a path you typed. Media
+pool items still generate correctly in the XML — only the source files aren't
+gathered, so each device folder carries a `MEDIA.txt` naming what to load into
+which slot. **Use the desktop app for live apply.**
 
 ## Documentation
 
@@ -191,6 +216,11 @@ npm run server:dev   # run the web server (tsx watch) on :4720
 npm run preview:web  # vite dev server for the web UI on :5199 (proxies /api → :4720)
 npm run web          # build web + server, then serve at http://localhost:4720
 
+# Hosted target (no backend)
+npm run preview:static  # vite dev server for the backend-less UI on :5200
+npm run static:build    # production build into out-static/
+npm run deploy:static   # build, then publish the Worker (needs Cloudflare creds)
+
 # Shared
 npm test             # vitest unit tests (XML generator, exporter, network apply)
 npm run typecheck    # node (electron) + web + server
@@ -203,9 +233,14 @@ built by `.github/workflows/release-desktop.yml` (see [`launcher/README.md`](lau
 ## Architecture
 
 - [`src/shared/`](src/shared) — `models.ts` (capability profiles), `config.ts`
-  (the single source-of-truth data model), `protocol.ts` (IPC types).
-- [`src/main/services/`](src/main/services) — `xmlGenerator.ts`,
-  `folderExporter.ts`, `fleetStore.ts`, `networkApply.ts`.
+  (the single source-of-truth data model), `protocol.ts` (IPC types + backend
+  capabilities), `xmlGenerator.ts` and `names.ts`. Everything here is pure and
+  runs unchanged in Electron, in Node and in a browser tab.
+- [`src/main/services/`](src/main/services) — `folderExporter.ts`,
+  `fleetStore.ts`, `networkApply.ts`: the parts that need a filesystem or a
+  socket.
+- [`src/web/`](src/web) — the two browser backends (`webApi.ts` over HTTP,
+  `staticApi.ts` over nothing) and the in-browser archive builder.
 - [`src/renderer/src/`](src/renderer/src) — React UI: fleet sidebar +
   capability-gated tabbed device editor + export bar.
 

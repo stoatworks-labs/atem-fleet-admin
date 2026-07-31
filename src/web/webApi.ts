@@ -1,10 +1,12 @@
 /**
- * Browser implementation of {@link FleetAdminApi}.
+ * Browser implementation of {@link FleetAdminApi} backed by the local server.
  *
  * The React UI talks to `window.api` regardless of backend. In Electron that's
- * the preload IPC bridge; here it's HTTP to the local server, with fleet
- * open/save handled entirely client-side (file upload / download) since a
+ * the preload IPC bridge; here it's HTTP to the local server (src/server), with
+ * fleet open/save handled entirely client-side (file upload / download) since a
  * browser has no native save dialog.
+ *
+ * For the hosted build with no server behind it, see staticApi.ts.
  */
 
 import type { DeviceConfig, FleetProject } from '../shared/config'
@@ -15,6 +17,7 @@ import type {
   OpenResult,
   SaveResult
 } from '../shared/protocol'
+import { download, pickFile } from './browserFiles'
 
 async function postJson<T>(url: string, body: unknown): Promise<T> {
   const res = await fetch(url, {
@@ -29,35 +32,11 @@ async function postJson<T>(url: string, body: unknown): Promise<T> {
   return res.json() as Promise<T>
 }
 
-/** Prompt the browser to download `data` as a file. */
-function download(filename: string, data: string, type: string): void {
-  const blob = new Blob([data], { type })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = filename
-  a.click()
-  URL.revokeObjectURL(url)
-}
-
-/** Open a browser file picker and resolve the chosen file's text (or null). */
-function pickFile(accept: string): Promise<{ name: string; text: string } | null> {
-  return new Promise((resolve) => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = accept
-    input.onchange = async (): Promise<void> => {
-      const file = input.files?.[0]
-      if (!file) return resolve(null)
-      resolve({ name: file.name, text: await file.text() })
-    }
-    // If the dialog is cancelled no change fires; that simply leaves the promise
-    // pending, which is harmless for this one-shot UI action.
-    input.click()
-  })
-}
-
 export const webApi: FleetAdminApi = {
+  // The server runs on the operator's own machine, so it has the same reach as
+  // Electron: it writes real directories and opens sockets to the LAN.
+  capabilities: { networkApply: true, exportKind: 'folders', bundlesMedia: true },
+
   fleet: {
     open: async (): Promise<OpenResult | null> => {
       const picked = await pickFile('.json,.afa.json,application/json')
@@ -66,7 +45,7 @@ export const webApi: FleetAdminApi = {
     },
     save: async (fleet: FleetProject): Promise<SaveResult | null> => {
       const filename = `${fleet.name || 'fleet'}.afa.json`
-      download(filename, JSON.stringify(fleet, null, 2), 'application/json')
+      download(JSON.stringify(fleet, null, 2), filename, 'application/json')
       return { filePath: filename }
     }
   },

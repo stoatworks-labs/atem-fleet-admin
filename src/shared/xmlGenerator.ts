@@ -2,7 +2,7 @@
  * Config model -> ATEM Software Control `<Profile>` XML.
  *
  * Element names, attribute names, nesting and 4-space indentation are matched
- * against real ATEM autosave files (see src/main/services/xmlGenerator.spec.ts,
+ * against real ATEM autosave files (see src/shared/xmlGenerator.spec.ts,
  * which asserts against fixtures taken from ~/Documents/ATEM Autosave). The
  * `<Profile>` child order is: MixEffectBlocks, Auxiliaries, VideoMode, Settings
  * (which wraps Inputs / MediaPool), MediaPlayers, SuperSources — followed by the
@@ -13,8 +13,8 @@
  * exact formatting ATEM Software Control writes.
  */
 
-import type { DeviceConfig, OutputRoute } from '../../shared/config'
-import { getModelProfile, type TransitionStyle } from '../../shared/models'
+import type { DeviceConfig, OutputRoute } from './config'
+import { getModelProfile, type TransitionStyle } from './models'
 
 const INDENT = '    '
 

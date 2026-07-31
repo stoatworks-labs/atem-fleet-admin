@@ -10,6 +10,9 @@ import type {
 } from '../shared/protocol'
 
 const api: FleetAdminApi = {
+  // Electron is the full-capability backend: real directories, copied media,
+  // and a socket to the switcher.
+  capabilities: { networkApply: true, exportKind: 'folders', bundlesMedia: true },
   fleet: {
     open: (): Promise<OpenResult | null> => ipcRenderer.invoke('fleet:open'),
     save: (fleet: FleetProject): Promise<SaveResult | null> =>

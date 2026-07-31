@@ -12,16 +12,20 @@ import { useState } from 'react'
  * a path out of a dialog, and revealed in the file manager because on macOS it
  * lives under ~/Library/Logs, which is hidden in Finder by default.
  */
-export function DiagnosticsPanel(): React.JSX.Element {
+export function DiagnosticsPanel(): React.JSX.Element | null {
   const [expanded, setExpanded] = useState(false)
   const [status, setStatus] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+
+  // Absent on the browser backends: there is no log folder to collect or reveal.
+  const diag = window.api.diag
+  if (!diag) return null
 
   const collect = async (): Promise<void> => {
     setBusy(true)
     setStatus(null)
     try {
-      const path = await window.api.diag.collect()
+      const path = await diag.collect()
       try {
         await navigator.clipboard.writeText(path)
         setStatus(`Written to ${path} — path copied to your clipboard.`)
@@ -38,7 +42,7 @@ export function DiagnosticsPanel(): React.JSX.Element {
 
   const openFolder = async (): Promise<void> => {
     try {
-      await window.api.diag.openLogFolder()
+      await diag.openLogFolder()
     } catch (err) {
       setStatus(`Could not open the log folder: ${(err as Error).message}`)
     }
@@ -56,9 +60,9 @@ export function DiagnosticsPanel(): React.JSX.Element {
       {expanded && (
         <div className="diagnostics-body">
           <p className="diagnostics-hint">
-            If something goes wrong, collect diagnostics and attach the file to your bug report.
-            It holds the logs, the app version, your settings with any passwords removed, and
-            details of any recent crash.
+            If something goes wrong, collect diagnostics and attach the file to your bug report. It
+            holds the logs, the app version, your settings with any passwords removed, and details
+            of any recent crash.
           </p>
           <div className="diagnostics-actions">
             <button onClick={collect} disabled={busy}>

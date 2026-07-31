@@ -12,6 +12,7 @@ export default defineConfig(
       '**/dist',
       '**/out',
       '**/out-web',
+      '**/out-static',
       '**/out-server',
       '**/exports',
       'launcher'

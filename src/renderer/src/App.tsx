@@ -54,7 +54,9 @@ function App(): React.JSX.Element {
               <h2>No device selected</h2>
               <p>Add an ATEM from the sidebar, then build its config through the tabs.</p>
               <p className="muted">
-                Generate loadable XML + media folders, or connect and apply over the network.
+                {window.api.capabilities.networkApply
+                  ? 'Generate loadable XML + media folders, or connect and apply over the network.'
+                  : 'Generate loadable XML folders as a .zip. Everything happens in this tab — nothing is uploaded.'}
               </p>
             </div>
           )}

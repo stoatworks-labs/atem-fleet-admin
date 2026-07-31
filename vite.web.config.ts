@@ -8,6 +8,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   root: 'src/web',
   base: './',
+  define: { __AFA_TARGET__: JSON.stringify('server') },
   resolve: {
     alias: { '@renderer': resolve('src/renderer/src') }
   },

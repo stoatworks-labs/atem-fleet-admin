@@ -5,6 +5,7 @@ out
 .eslintcache
 *.log*
 out-web
+out-static
 out-server
 exports
 dist-release/

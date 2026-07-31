@@ -1,7 +1,7 @@
 import express, { type Express } from 'express'
 import { existsSync } from 'fs'
 import type { DeviceConfig, FleetProject } from '../shared/config'
-import { generateDeviceXml } from '../main/services/xmlGenerator'
+import { generateDeviceXml } from '../shared/xmlGenerator'
 import { exportFleet } from '../main/services/folderExporter'
 import { applyToDevice } from '../main/services/networkApply'
 import type { ServerConfig } from './config'

@@ -1,0 +1,12 @@
+# Hosted build of the fleet provisioner — a Worker that serves the static build
+# (out-static) and nothing else. There is no server-side code: every ATEM profile
+# is generated in the visitor's tab and no fleet file is ever uploaded.
+#
+# Build with `npm run static:build`, publish with `cf-run npx wrangler deploy`.
+name = "atem-fleet-admin"
+compatibility_date = "2026-07-30"
+
+[assets]
+directory = "./out-static"
+# Deep links and reloads land on the SPA rather than a 404.
+not_found_handling = "single-page-application"

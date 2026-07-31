@@ -3,7 +3,7 @@
  *
  * This is the single source of truth. Everything the UI edits lives here as
  * plain serialisable data, and both output paths consume it unchanged:
- *  - {@link ../main/services/xmlGenerator} turns a {@link DeviceConfig} into an
+ *  - {@link ./xmlGenerator} turns a {@link DeviceConfig} into an
  *    ATEM Software Control `<Profile>` XML document, and
  *  - {@link ../main/services/networkApply} turns it into an `atem-connection`
  *    setter sequence for the fields the protocol can set live.

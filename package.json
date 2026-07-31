@@ -18,6 +18,9 @@
     "dev": "electron-vite dev",
     "preview:web": "vite --config vite.web.config.ts --port 5199",
     "web:build": "vite build --config vite.web.config.ts",
+    "static:build": "vite build --config vite.static.config.ts",
+    "preview:static": "vite --config vite.static.config.ts --port 5200",
+    "deploy:static": "npm run static:build && npx wrangler deploy",
     "server:dev": "tsx watch src/server/index.ts",
     "server:build": "tsc -p tsconfig.server.json",
     "server:start": "node out-server/server/index.js",
@@ -36,6 +39,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "atem-connection": "^3.9.0",
     "express": "^4.21.2",
+    "fflate": "^0.8.3",
     "pino": "^10.3.1",
     "zustand": "^5.0.2"
   },

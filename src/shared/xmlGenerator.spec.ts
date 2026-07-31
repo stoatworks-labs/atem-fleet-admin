@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { generateDeviceXml, recordingBitrateKbps } from './xmlGenerator'
-import { createDevice } from '../../shared/config'
+import { createDevice } from './config'
 
 /**
  * These assertions pin the generator to the element/attribute conventions taken

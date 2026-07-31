@@ -27,29 +27,43 @@ TypeScript, electron-vite + React, vitest. Public repo. Tagged v0.2.1, built and
 
 ## 3. Two things make this repo awkward, and both are deliberate
 
-**It has two run targets.** An Electron app (all platforms) *and* a web/av-launcher tray app
-(macOS-only). A change can easily fix one and break the other. **Verify the mode your change
-actually affects** — and if it touches shared code, verify both.
+**It has three run targets.** An Electron app (all platforms), a web/av-launcher tray app
+(macOS-only), *and* a hosted build with no backend at all. A change can easily fix one and
+break the others. **Verify the mode your change actually affects** — and if it touches
+shared code, verify all three.
 
-**It has three tsconfigs**: main (`node`), renderer (`web`), and server (`server`).
-`npm run typecheck` covers all three, which is why it's the check that matters here rather
-than a single `tsc`.
+The three differ only in what backs `window.api`, and each one declares what it can do
+through `capabilities` (see `src/shared/protocol.ts`). **Never sniff for Electron in the
+React components — read `window.api.capabilities`.** The hosted build has no LAN and no
+filesystem, so `networkApply` is false there and the UI hides live apply instead of
+offering a button that always fails.
+
+**It has three tsconfigs**: main (`node`), renderer (`web` — which also covers `src/web`),
+and server (`server`). `npm run typecheck` covers all three, which is why it's the check
+that matters here rather than a single `tsc`.
 
 ```
 src/server/    Backend for the web/tray target
+src/web/       Both browser backends: webApi.ts (HTTP) and staticApi.ts (none)
 ```
+
+Anything pure enough to run in a browser tab belongs in `src/shared/` — that is why
+`xmlGenerator.ts` and `names.ts` live there rather than under `src/main/`. `src/main/`
+is for the parts that genuinely need a filesystem or a socket.
 
 ## 4. Commands
 
 ```bash
-npm run dev          # Electron dev
-npm run web          # web target: build + serve
-npm run preview:web  # vite dev for the web target
-npm run server:dev   # server only
-npm run typecheck    # node + web + server - run this
-npm test             # vitest
+npm run dev             # Electron dev
+npm run web             # web target: build + serve
+npm run preview:web     # vite dev for the web target
+npm run server:dev      # server only
+npm run preview:static  # vite dev for the hosted (backend-less) target
+npm run static:build    # hosted target production build -> out-static/
+npm run typecheck       # node + web + server - run this
+npm test                # vitest
 npm run build
-npm run build:mac    # / :win / :linux
+npm run build:mac       # / :win / :linux
 ```
 
 ## 5. The core invariant: one authoritative model catalog

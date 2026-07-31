@@ -27,6 +27,62 @@ routing — the Mini Extremes above it show neither.*
 
 ![Architecture](docs/architecture.svg)
 
+<!-- downloads:start -->
+
+## Download
+
+**[v0.2.1](https://github.com/stoatworks-labs/atem-fleet-admin/releases/tag/v0.2.1)** — prebuilt for macOS, Windows and Linux. Pick your platform:
+
+<details>
+<summary><b>macOS</b> — Apple Silicon, Intel</summary>
+
+| Build | Download | Size |
+| --- | --- | --- |
+| Apple Silicon · .dmg disk image | [`ATEM.Fleet.Admin-0.2.1-arm64.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-arm64.dmg) | 117 MB |
+| Intel · .dmg disk image | [`ATEM.Fleet.Admin-0.2.1.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1.dmg) | 125 MB |
+| Apple Silicon · .pkg installer | [`atem-fleet-admin-0.2.1-macos-arm64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-macos-arm64.pkg) | 153 MB |
+| Intel · .pkg installer | [`atem-fleet-admin-0.2.1-macos-x64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-macos-x64.pkg) | 161 MB |
+| Apple Silicon · .zip archive | [`ATEM.Fleet.Admin-0.2.1-arm64-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-arm64-mac.zip) | 118 MB |
+| Intel · .zip archive | [`ATEM.Fleet.Admin-0.2.1-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-mac.zip) | 125 MB |
+
+</details>
+
+<details>
+<summary><b>Windows</b> — x64 & ARM64, x64, ARM64</summary>
+
+| Build | Download | Size |
+| --- | --- | --- |
+| x64 & ARM64 · .exe installer | [`atem-fleet-admin-0.2.1-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-setup.exe) | 200 MB |
+| x64 · .exe installer | [`atem-fleet-admin-0.2.1-x64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-x64-setup.exe) | 103 MB |
+| ARM64 · .exe installer | [`atem-fleet-admin-0.2.1-arm64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-arm64-setup.exe) | 97 MB |
+| x64 & ARM64 · portable .exe | [`atem-fleet-admin-0.2.1-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-portable.exe) | 199 MB |
+| x64 · portable .exe | [`atem-fleet-admin-0.2.1-x64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-x64-portable.exe) | 102 MB |
+| ARM64 · portable .exe | [`atem-fleet-admin-0.2.1-arm64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1-arm64-portable.exe) | 97 MB |
+| x64 · .zip archive | [`ATEM.Fleet.Admin-0.2.1-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-win.zip) | 145 MB |
+| ARM64 · .zip archive | [`ATEM.Fleet.Admin-0.2.1-arm64-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-arm64-win.zip) | 144 MB |
+
+</details>
+
+<details>
+<summary><b>Linux</b> — x64, ARM64</summary>
+
+| Build | Download | Size |
+| --- | --- | --- |
+| x64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.2.1_amd64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin_0.2.1_amd64.deb) | 96 MB |
+| ARM64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.2.1_arm64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin_0.2.1_arm64.deb) | 91 MB |
+| x64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.2.1.x86_64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1.x86_64.rpm) | 85 MB |
+| ARM64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.2.1.aarch64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/atem-fleet-admin-0.2.1.aarch64.rpm) | 80 MB |
+| x64 · AppImage | [`ATEM.Fleet.Admin-0.2.1.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1.AppImage) | 123 MB |
+| ARM64 · AppImage | [`ATEM.Fleet.Admin-0.2.1-arm64.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.2.1/ATEM.Fleet.Admin-0.2.1-arm64.AppImage) | 124 MB |
+
+</details>
+
+All builds, checksums and release notes: [github.com/stoatworks-labs/atem-fleet-admin/releases](https://github.com/stoatworks-labs/atem-fleet-admin/releases).
+
+These builds are unsigned, so macOS and Windows each warn once on first launch — see [Unsigned builds — Gatekeeper, SmartScreen & Defender Firewall](#unsigned-builds--gatekeeper-smartscreen--defender-firewall) for the one-time fix.
+
+<!-- downloads:end -->
+
 ## Why
 
 Configuring ATEMs one at a time in ATEM Software Control — input/output names,

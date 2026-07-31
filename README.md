@@ -12,7 +12,7 @@ ATEMs in one place, build each device's configuration through model-aware forms
 Built with electron-vite + React + TypeScript, matching the stack of its sibling
 [animATEM](https://github.com/stoatworks-labs/animATEM).
 
-[![Watch it running — 45 seconds](docs/video-thumb.png)](https://www.youtube.com/watch?v=qO7k9Ycdn2M)
+[![Watch it running — 45 seconds](docs/video-thumb.png)](https://www.youtube.com/watch?v=r8oRdKLFgGk)
 
 *A 45-second tour of the real app. Two switchers of different models, showing the
 form adapt: a Mini Extreme has Streaming and Recording tabs, a 4 M/E Broadcast

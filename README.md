@@ -18,6 +18,13 @@ Built with electron-vite + React + TypeScript, matching the stack of its sibling
 form adapt: a Mini Extreme has Streaming and Recording tabs, a 4 M/E Broadcast
 Studio has SuperSource instead.*
 
+![ATEM Fleet Admin — a three-switcher fleet with the Inputs / Outputs tab open on a
+4 M/E Broadcast Studio 4K](docs/screenshots/fleet-admin.png)
+
+*The same adaptation as a still: three switchers in the sidebar, two models between
+them. The selected 4 M/E exposes a SuperSource tab and twenty inputs with full AUX
+routing — the Mini Extremes above it show neither.*
+
 ![Architecture](docs/architecture.svg)
 
 ## Why
@@ -153,6 +160,27 @@ with or endorsed by Blackmagic Design. "ATEM" is a trademark of Blackmagic
 Design. Generated configurations — especially the reconstructed Mini
 streaming/recording XML — should be verified on your own hardware before use in
 production.
+
+## Unsigned builds — Gatekeeper, SmartScreen & Defender Firewall
+
+The release binaries are **not code-signed or notarized** — that needs paid Apple
+and Microsoft developer certificates this project doesn't carry. The downloads are
+fine; the OS just can't identify the publisher, so it warns you the first time.
+
+- **macOS** — *"cannot be opened because the developer cannot be verified"*.
+  Right-click the app → **Open** → **Open**, or clear the flag:
+  `xattr -dr com.apple.quarantine "/Applications/ATEM Fleet Admin.app"`
+- **Windows** — SmartScreen shows *"Windows protected your PC"* →
+  **More info** → **Run anyway**.
+- **Windows Defender Firewall** — first launch pops *"Allow ATEM Fleet Admin to
+  communicate on these networks"*. Tick **Private** (and **Domain** on a managed
+  network) — ATEM Fleet Admin needs it to serve the web UI and push configuration to
+  ATEMs over the network. Deny it and "Connect & apply" will fail — the folder-export
+  path still works offline.
+- **Linux** — no signing gate.
+
+Per-artifact steps, self-signing, checksum verification and the Defender Firewall reset
+procedure: **[docs/UNSIGNED.md](docs/UNSIGNED.md)**.
 
 ## License
 

@@ -170,7 +170,15 @@ provisioning logic (`src/shared`):
    Cloudflare Worker. Every ATEM profile is generated in your own tab by the same
    `generateDeviceXml` the desktop app runs, and the export arrives as a `.zip`
    of the identical folder tree. **Nothing is uploaded** — your fleet file never
-   leaves your machine.
+   leaves your machine. Live at
+   **[atem-fleet-admin.stoatworks-labs.com](https://atem-fleet-admin.stoatworks-labs.com)**.
+
+[![Watch the browser build — 47 seconds](docs/video-web-thumb.png)](https://www.youtube.com/watch?v=s6JW94yhUHs)
+
+*A 47-second tour of the hosted build, filmed at that address: a four-switcher
+fleet built from scratch, the forms adapting to each model, and a `.zip` of
+loadable `config.xml` folders assembled in the tab. The festival and its
+addresses are invented; the export is real.*
 
 The React UI is identical across all three; only `window.api` differs (Electron
 IPC, HTTP, or nothing — see [`src/web/`](src/web)). Each backend declares what it

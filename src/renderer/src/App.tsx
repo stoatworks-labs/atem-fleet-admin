@@ -38,6 +38,12 @@ function App(): React.JSX.Element {
           <button onClick={open}>Open…</button>
           <button onClick={save}>Save…</button>
           <DiagnosticsPanel />
+          {/* Opens the shared About dialog — see public/about.js, which delegates
+              this attribute from the document, so nothing needs importing here.
+              One dialog for all three builds: desktop, local server and hosted. */}
+          <button type="button" data-stoatworks-about>
+            About
+          </button>
         </div>
       </header>
 

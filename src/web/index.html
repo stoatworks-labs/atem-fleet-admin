@@ -34,5 +34,22 @@
     -->
     <script src="/about-data.js" defer></script>
     <script src="/about.js" defer></script>
+    <!--
+      Support footer. Vendored from stoatworks-backend/support-footer — edit it
+      there and re-run that repo's scripts/sync-support-footer.sh, never here.
+      Classic + defer on purpose: it reads its config off this tag, and
+      document.currentScript is null inside a module.
+
+      No data-note, for the same reason RFutils has none: this index.html is the
+      root of BOTH web builds — the hosted static one, which has no backend and
+      does everything in the tab, and the server-backed one behind src/server.
+      "Nothing is uploaded" would be true of the first and false of the second.
+    -->
+    <script
+      src="/support-footer.js"
+      defer
+      data-app="ATEM Fleet Admin"
+      data-repo="https://github.com/stoatworks-labs/atem-fleet-admin"
+    ></script>
   </body>
 </html>

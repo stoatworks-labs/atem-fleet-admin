@@ -78,7 +78,22 @@ eb() {
     || { echo "electron-builder failed for: $*" >&2; return 1; }
 }
 
-[[ "$platforms" == *--mac* ]] && eb --mac
+# Developer ID signing, when this machine is configured for it. The CLI -c
+# overrides outrank the repos' `identity: '-'` ad-hoc setting, so the same
+# config builds ad-hoc in CI and properly signed here. electron-builder's
+# default entitlements already carry the JIT/unsigned-memory exceptions
+# Electron needs; a repo that needs more ships scripts/mac-entitlements.plist,
+# which rl_init picks up (helpers inherit it too — the renderers are the
+# processes that actually JIT).
+mac_sign_args=()
+if rl_mac_sign_ready; then
+  mac_sign_args+=(-c.mac.identity="$RL_MAC_SIGN_IDENTITY" -c.mac.hardenedRuntime=true)
+  if [[ -n "${RL_MAC_ENTITLEMENTS:-}" && -f "${RL_MAC_ENTITLEMENTS:-}" ]]; then
+    mac_sign_args+=(-c.mac.entitlements="$RL_MAC_ENTITLEMENTS"
+                    -c.mac.entitlementsInherit="$RL_MAC_ENTITLEMENTS")
+  fi
+fi
+[[ "$platforms" == *--mac* ]] && eb --mac "${mac_sign_args[@]}"
 [[ "$platforms" == *--win*   ]] && eb --win
 [[ "$platforms" == *--linux* ]] && eb --linux
 true
@@ -110,6 +125,45 @@ if [[ "$platforms" == *--mac* ]]; then
   done
 fi
 
+# Notarise the finished mac artefacts. electron-builder packs the dmg and zip
+# itself, so — like Windows signing below — the only handle is the finished
+# file. The dmg is submitted and stapled; a zip cannot be stapled but the
+# submission registers the app's hashes, which is what Gatekeeper checks.
+# Only zips that actually hold an .app are submitted: a Windows or Linux zip
+# would be rejected at intake and abort the release.
+if [[ "$platforms" == *--mac* ]] && rl_mac_sign_ready && rl_notary_ready; then
+  while IFS= read -r a; do
+    case "$a" in
+      *.dmg) rl_mac_notarize "$a" || exit 1 ;;
+      *.zip) unzip -l "$a" 2>/dev/null | grep -q '\.app/Contents/' \
+               && { rl_mac_notarize "$a" || exit 1; } ;;
+    esac
+  done < <(find "$out" -mindepth 1 -maxdepth 1 -type f \
+             \( -name '*.dmg' -o -name '*.zip' \) | sort)
+fi
+
+# Windows signing, post-hoc.
+#
+# Unlike the Rust and Python paths there is no staging directory to sign before
+# packing: electron-builder builds its own NSIS installer internally, so the
+# only handle we get is the finished artefact. Sign those here, BEFORE the
+# cleanup below runs — blockmaps are checksums of the installer, so signing
+# after they were written would invalidate them, and the tidy-up is what makes
+# that harmless by deleting them.
+#
+# This covers the case that actually matters: the downloaded installer is the
+# file carrying a Mark-of-the-Web, and MOTW is the only thing SmartScreen
+# consults. The app .exe *inside* the installer stays unsigned — it is written
+# to disk locally, so it is never MOTW-tagged and never reaches SmartScreen,
+# but it does mean the binary itself carries no publisher identity. Closing
+# that gap needs electron-builder's own `win.sign` hook pointed at jsign, which
+# lives in each project's electron-builder config rather than here.
+if [[ "$platforms" == *--win* ]]; then
+  while IFS= read -r a; do
+    rl_sign_windows "$a" || exit 1
+  done < <(find "$out" -mindepth 1 -maxdepth 1 -type f -name '*.exe' | sort)
+fi
+
 # electron-builder leaves update manifests, blockmaps and unpacked trees behind.
 # Keep only what a user would actually download.
 #
@@ -122,12 +176,17 @@ find "$out" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} + 2>/dev/null || tru
 
 rl_summary
 
-cat <<NOTE
+if (( RL_NOTARIZED_COUNT > 0 )); then
+  echo
+  echo "    macOS artefacts are Developer ID-signed and notarised — no quarantine step."
+else
+  cat <<NOTE
 
-    Unsigned. macOS users must run
+    macOS artefacts are not code-signed. Users must run
       xattr -dr com.apple.quarantine "/Applications/${RE_NAME}.app"
     after installing.
 NOTE
+fi
 
 if (( upload )); then
   echo "==> tagging ${tag}"
@@ -136,7 +195,7 @@ if (( upload )); then
   git tag -a "$tag" -m "${RE_NAME} ${version}" || true
   git push origin HEAD --tags
   gh release create "$tag" --title "${RE_NAME} ${version}" \
-     --notes "Local build — GitHub Actions minutes are exhausted, so these artefacts were cut on a Mac. Unsigned: see the README for the macOS quarantine step." \
+     --notes "Local build — GitHub Actions minutes are exhausted, so these artefacts were cut on a Mac. $(rl_notes_signing)" \
      "$out"/* \
     || gh release upload "$tag" "$out"/* --clobber
 fi

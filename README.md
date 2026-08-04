@@ -140,7 +140,7 @@ Pick an output directory; Fleet Admin writes:
 Drag the `Media/` files into the switcher's media pool, then use ATEM Software
 Control's **Load** to apply `config.xml`. The `<Profile>` XML matches the
 element/attribute/nesting conventions of real ATEM save files
-(see [`xmlGenerator.spec.ts`](src/main/services/xmlGenerator.spec.ts)).
+(see [`xmlGenerator.spec.ts`](src/shared/xmlGenerator.spec.ts)).
 
 ### Connect & apply (live)
 

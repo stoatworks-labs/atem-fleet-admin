@@ -284,3 +284,7 @@ procedure: **[docs/UNSIGNED.md](docs/UNSIGNED.md)**.
 ## License
 
 MIT
+
+<!-- attributions:start -->
+This project is built on other people's work — see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+<!-- attributions:end -->

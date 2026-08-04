@@ -38,12 +38,12 @@ routing — the Mini Extremes above it show neither.*
 
 | Build | Download | Size |
 | --- | --- | --- |
-| Apple Silicon · .dmg disk image | [`ATEM.Fleet.Admin-0.3.0-arm64.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64.dmg) | 119 MB |
+| Apple Silicon · .dmg disk image | [`ATEM.Fleet.Admin-0.3.0-arm64.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64.dmg) | 118 MB |
 | Intel · .dmg disk image | [`ATEM.Fleet.Admin-0.3.0.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0.dmg) | 126 MB |
-| Apple Silicon · .pkg installer | [`atem-fleet-admin-0.3.0-macos-arm64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-macos-arm64.pkg) | 119 MB |
+| Apple Silicon · .pkg installer | [`atem-fleet-admin-0.3.0-macos-arm64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-macos-arm64.pkg) | 118 MB |
 | Intel · .pkg installer | [`atem-fleet-admin-0.3.0-macos-x64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-macos-x64.pkg) | 126 MB |
-| Apple Silicon · .zip archive | [`ATEM.Fleet.Admin-0.3.0-arm64-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64-mac.zip) | 115 MB |
-| Intel · .zip archive | [`ATEM.Fleet.Admin-0.3.0-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-mac.zip) | 122 MB |
+| Apple Silicon · .zip archive | [`ATEM.Fleet.Admin-0.3.0-arm64-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64-mac.zip) | 118 MB |
+| Intel · .zip archive | [`ATEM.Fleet.Admin-0.3.0-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-mac.zip) | 127 MB |
 
 </details>
 
@@ -79,7 +79,7 @@ routing — the Mini Extremes above it show neither.*
 
 All builds, checksums and release notes: [github.com/stoatworks-labs/atem-fleet-admin/releases](https://github.com/stoatworks-labs/atem-fleet-admin/releases).
 
-These builds are unsigned, so macOS and Windows each warn once on first launch — see [Unsigned builds — Gatekeeper, SmartScreen & Defender Firewall](#unsigned-builds--gatekeeper-smartscreen--defender-firewall) for the one-time fix.
+The Windows builds are unsigned, so SmartScreen warns once — see [Unsigned builds — Gatekeeper, SmartScreen & Defender Firewall](#unsigned-builds--gatekeeper-smartscreen--defender-firewall) for the one-time click-through.
 
 <!-- downloads:end -->
 

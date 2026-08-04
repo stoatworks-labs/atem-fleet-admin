@@ -1,5 +1,11 @@
 # ATEM Fleet Admin
 
+> **AI-assisted project.** This codebase was created with [Claude](https://claude.com/claude-code)
+> (Anthropic), directed and reviewed by a human author. Generated configurations
+> — especially the reconstructed Mini streaming/recording XML, which is written
+> from observed files rather than from a published schema — should be checked on
+> your own hardware before a production load.
+
 Provision a **fleet of Blackmagic ATEM switchers at once**. Define any number of
 ATEMs in one place, build each device's configuration through model-aware forms
 (dropdowns + text fields), then either:
@@ -254,11 +260,8 @@ built by `.github/workflows/release-desktop.yml` (see [`launcher/README.md`](lau
 
 ## Disclaimer
 
-This project was developed with AI assistance (Claude). It is not affiliated
-with or endorsed by Blackmagic Design. "ATEM" is a trademark of Blackmagic
-Design. Generated configurations — especially the reconstructed Mini
-streaming/recording XML — should be verified on your own hardware before use in
-production.
+Not affiliated with or endorsed by Blackmagic Design. "ATEM" is a trademark of
+Blackmagic Design.
 
 ## Unsigned builds — Gatekeeper, SmartScreen & Defender Firewall
 

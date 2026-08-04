@@ -93,7 +93,7 @@ if rl_mac_sign_ready; then
                     -c.mac.entitlementsInherit="$RL_MAC_ENTITLEMENTS")
   fi
 fi
-[[ "$platforms" == *--mac* ]] && eb --mac "${mac_sign_args[@]}"
+[[ "$platforms" == *--mac* ]] && eb --mac ${mac_sign_args[@]+"${mac_sign_args[@]}"}
 [[ "$platforms" == *--win*   ]] && eb --win
 [[ "$platforms" == *--linux* ]] && eb --linux
 true

@@ -15,7 +15,11 @@ export default defineConfig(
       '**/out-static',
       '**/out-server',
       '**/exports',
-      'launcher'
+      'launcher',
+      // Shared Stoatworks web assets (About window, support footer): plain JS
+      // mastered in stoatworks-backend, so the TypeScript rules here can never
+      // be satisfied without editing the master.
+      'public/**'
     ]
   },
   tseslint.configs.recommended,

@@ -1,7 +1,7 @@
 {
   "name": "atem-fleet-admin",
   "productName": "ATEM Fleet Admin",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Provision a fleet of Blackmagic ATEM switchers at once: build each device's config through model-aware forms, then push it over the network or generate loadable XML + media folders for ATEM Software Control.",
   "private": true,
   "main": "./out/main/index.js",

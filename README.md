@@ -37,19 +37,19 @@ routing — the Mini Extremes above it show neither.*
 
 ## Download
 
-**[v0.3.0](https://github.com/stoatworks-labs/atem-fleet-admin/releases/tag/v0.3.0)** — prebuilt for macOS, Windows and Linux. Pick your platform:
+**[v0.4.0](https://github.com/stoatworks-labs/atem-fleet-admin/releases/tag/v0.4.0)** — prebuilt for macOS, Windows and Linux. Pick your platform:
 
 <details>
 <summary><b>macOS</b> — Apple Silicon, Intel</summary>
 
 | Build | Download | Size |
 | --- | --- | --- |
-| Apple Silicon · .dmg disk image | [`ATEM.Fleet.Admin-0.3.0-arm64.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64.dmg) | 118 MB |
-| Intel · .dmg disk image | [`ATEM.Fleet.Admin-0.3.0.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0.dmg) | 126 MB |
-| Apple Silicon · .pkg installer | [`atem-fleet-admin-0.3.0-macos-arm64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-macos-arm64.pkg) | 118 MB |
-| Intel · .pkg installer | [`atem-fleet-admin-0.3.0-macos-x64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-macos-x64.pkg) | 126 MB |
-| Apple Silicon · .zip archive | [`ATEM.Fleet.Admin-0.3.0-arm64-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64-mac.zip) | 118 MB |
-| Intel · .zip archive | [`ATEM.Fleet.Admin-0.3.0-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-mac.zip) | 127 MB |
+| Apple Silicon · .dmg disk image | [`ATEM.Fleet.Admin-0.4.0-arm64.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-arm64.dmg) | 128 MB |
+| Intel · .dmg disk image | [`ATEM.Fleet.Admin-0.4.0.dmg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0.dmg) | 133 MB |
+| Apple Silicon · .pkg installer | [`atem-fleet-admin-0.4.0-macos-arm64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-macos-arm64.pkg) | 128 MB |
+| Intel · .pkg installer | [`atem-fleet-admin-0.4.0-macos-x64.pkg`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-macos-x64.pkg) | 133 MB |
+| Apple Silicon · .zip archive | [`ATEM.Fleet.Admin-0.4.0-arm64-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-arm64-mac.zip) | 129 MB |
+| Intel · .zip archive | [`ATEM.Fleet.Admin-0.4.0-mac.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-mac.zip) | 134 MB |
 
 </details>
 
@@ -58,14 +58,14 @@ routing — the Mini Extremes above it show neither.*
 
 | Build | Download | Size |
 | --- | --- | --- |
-| x64 & ARM64 · .exe installer | [`atem-fleet-admin-0.3.0-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-setup.exe) | 220 MB |
-| x64 · .exe installer | [`atem-fleet-admin-0.3.0-x64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-x64-setup.exe) | 112 MB |
-| ARM64 · .exe installer | [`atem-fleet-admin-0.3.0-arm64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-arm64-setup.exe) | 108 MB |
-| x64 & ARM64 · portable .exe | [`atem-fleet-admin-0.3.0-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-portable.exe) | 220 MB |
-| x64 · portable .exe | [`atem-fleet-admin-0.3.0-x64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-x64-portable.exe) | 112 MB |
-| ARM64 · portable .exe | [`atem-fleet-admin-0.3.0-arm64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0-arm64-portable.exe) | 108 MB |
-| x64 · .zip archive | [`ATEM.Fleet.Admin-0.3.0-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-win.zip) | 146 MB |
-| ARM64 · .zip archive | [`ATEM.Fleet.Admin-0.3.0-arm64-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64-win.zip) | 145 MB |
+| x64 & ARM64 · .exe installer | [`atem-fleet-admin-0.4.0-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-setup.exe) | 231 MB |
+| x64 · .exe installer | [`atem-fleet-admin-0.4.0-x64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-x64-setup.exe) | 118 MB |
+| ARM64 · .exe installer | [`atem-fleet-admin-0.4.0-arm64-setup.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-arm64-setup.exe) | 113 MB |
+| x64 & ARM64 · portable .exe | [`atem-fleet-admin-0.4.0-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-portable.exe) | 230 MB |
+| x64 · portable .exe | [`atem-fleet-admin-0.4.0-x64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-x64-portable.exe) | 118 MB |
+| ARM64 · portable .exe | [`atem-fleet-admin-0.4.0-arm64-portable.exe`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0-arm64-portable.exe) | 112 MB |
+| x64 · .zip archive | [`ATEM.Fleet.Admin-0.4.0-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-win.zip) | 154 MB |
+| ARM64 · .zip archive | [`ATEM.Fleet.Admin-0.4.0-arm64-win.zip`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-arm64-win.zip) | 151 MB |
 
 </details>
 
@@ -74,12 +74,12 @@ routing — the Mini Extremes above it show neither.*
 
 | Build | Download | Size |
 | --- | --- | --- |
-| x64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.3.0_amd64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin_0.3.0_amd64.deb) | 97 MB |
-| ARM64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.3.0_arm64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin_0.3.0_arm64.deb) | 92 MB |
-| x64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.3.0.x86_64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0.x86_64.rpm) | 86 MB |
-| ARM64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.3.0.aarch64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/atem-fleet-admin-0.3.0.aarch64.rpm) | 81 MB |
-| x64 · AppImage | [`ATEM.Fleet.Admin-0.3.0.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0.AppImage) | 125 MB |
-| ARM64 · AppImage | [`ATEM.Fleet.Admin-0.3.0-arm64.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.3.0/ATEM.Fleet.Admin-0.3.0-arm64.AppImage) | 125 MB |
+| x64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.4.0_amd64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin_0.4.0_amd64.deb) | 107 MB |
+| ARM64 · .deb package (Debian/Ubuntu) | [`atem-fleet-admin_0.4.0_arm64.deb`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin_0.4.0_arm64.deb) | 101 MB |
+| x64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.4.0.x86_64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0.x86_64.rpm) | 94 MB |
+| ARM64 · .rpm package (Fedora/RHEL) | [`atem-fleet-admin-0.4.0.aarch64.rpm`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/atem-fleet-admin-0.4.0.aarch64.rpm) | 89 MB |
+| x64 · AppImage | [`ATEM.Fleet.Admin-0.4.0.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0.AppImage) | 137 MB |
+| ARM64 · AppImage | [`ATEM.Fleet.Admin-0.4.0-arm64.AppImage`](https://github.com/stoatworks-labs/atem-fleet-admin/releases/download/v0.4.0/ATEM.Fleet.Admin-0.4.0-arm64.AppImage) | 137 MB |
 
 </details>
 

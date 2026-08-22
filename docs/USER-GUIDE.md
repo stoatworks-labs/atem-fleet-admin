@@ -166,7 +166,7 @@ There is no token, no login and no TLS. Leave it on localhost.
 | **Everything reported error** | Check `connected` — a failed connection shows as a single Connect step in error. |
 | **"unknown ATEM model"** | The model isn't in the catalog. Two ship; others need adding. |
 | **Generated folders aren't where I expected (web target)** | They are on the server's machine, under its export directory. |
-| **Unsigned tray app's helpers die silently on macOS** | Approving the `.app` doesn't unquarantine its bundled binaries. See [`launcher/SIGNING.md`](../launcher/SIGNING.md). |
+| **Tray app's helpers die silently on macOS** | Only on a self-built or pre-notarisation copy — the releases are signed and notarised. Approving an unsigned `.app` does not unquarantine its bundled binaries. See [`launcher/SIGNING.md`](../launcher/SIGNING.md). |
 
 ---
 

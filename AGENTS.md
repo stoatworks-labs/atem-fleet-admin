@@ -95,3 +95,10 @@ hooks `render-process-gone` and `child-process-gone` — a dead renderer raises 
 main process's `uncaughtException` handler can see. `diag:collect` and `diag:openLogFolder`
 are registered over IPC but **no UI calls them yet**; wiring a button is outstanding.
 See [docs/diagnostics.md](docs/diagnostics.md).
+
+## Notes
+
+`docs/NOTES.md` carries this repo's working notes — current status, decisions
+already made, and the traps that have actually bitten. Read it before changing
+anything non-obvious. Cross-cutting fleet knowledge lives in
+[fleet-notes](https://github.com/stoatworks-labs/fleet-notes).

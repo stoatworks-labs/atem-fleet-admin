@@ -22,6 +22,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lockfile matches manifest
+
+        run: npm ls --all >/dev/null
+
       - name: Typecheck
         run: npm run typecheck
 
@@ -30,3 +34,19 @@ jobs:
 
       - name: Test
         run: npm run test
+
+      - name: Build the static site
+
+        run: npm run static:build
+
+      # Loads the built site in a real browser: a React major mismatch builds green
+
+      # and throws on first render (RFutils #22, three weeks of an empty page).
+
+      - name: Smoke-check the built site
+
+        uses: stoatworks-labs/smoke-check@v1
+
+        with:
+
+          dir: out-static

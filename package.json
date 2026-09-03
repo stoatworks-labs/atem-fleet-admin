@@ -38,7 +38,7 @@
     "@electron-toolkit/preload": "^3.0.2",
     "@electron-toolkit/utils": "^4.0.0",
     "atem-connection": "^3.10.2",
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "fflate": "^0.8.3",
     "pino": "^10.3.1",
     "zustand": "^5.0.15"

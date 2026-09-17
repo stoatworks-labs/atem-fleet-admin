@@ -7,7 +7,8 @@ system tray. Built with [Tauri v2](https://tauri.app) using the fleet's reusable
 
 Download an installer from
 [Releases](https://github.com/stoatworks-labs/atem-fleet-admin/releases):
-macOS `.dmg` (arm64 + x86_64), Windows `.exe`, Linux `.deb` + `.rpm`. (A Linux
+macOS `.dmg` + `.pkg` (one universal build for Apple Silicon and Intel),
+Windows `.exe`, Linux `.deb` + `.rpm`. (A Linux
 `.AppImage` is provided by the main **Electron** build instead — the tray app
 skips it, since its bundler needs FUSE on CI.)
 

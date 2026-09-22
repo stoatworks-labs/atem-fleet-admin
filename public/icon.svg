@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="ATEM Fleet Admin">
+  <rect width="32" height="32" rx="6" fill="#0f1013"/>
+  <g id="mark">
+    <!-- Three switchers in a rack, the middle one being configured. -->
+    <g stroke="#4b8bff" stroke-width="1.7" fill="none">
+      <rect x="5" y="5.5" width="22" height="6.5" rx="1.6"/>
+      <rect x="5" y="22" width="22" height="6.5" rx="1.6"/>
+    </g>
+    <rect x="5" y="13.75" width="22" height="6.5" rx="1.6" fill="#4b8bff"/>
+    <g fill="#4b8bff">
+      <circle cx="9" cy="8.75" r="1.1"/><circle cx="12.6" cy="8.75" r="1.1"/><circle cx="16.2" cy="8.75" r="1.1"/>
+      <circle cx="9" cy="25.25" r="1.1"/><circle cx="12.6" cy="25.25" r="1.1"/><circle cx="16.2" cy="25.25" r="1.1"/>
+    </g>
+    <g fill="#0f1013">
+      <circle cx="9" cy="17" r="1.1"/><circle cx="12.6" cy="17" r="1.1"/><circle cx="16.2" cy="17" r="1.1"/>
+    </g>
+  </g>
+</svg>

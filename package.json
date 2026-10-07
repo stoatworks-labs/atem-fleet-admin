@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
-    "@electron-toolkit/eslint-config-ts": "^3.1.0",
+    "@electron-toolkit/eslint-config-ts": "^4.0.0",
     "@electron-toolkit/tsconfig": "^2.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.3",

@@ -219,7 +219,7 @@ load into which slot. **Use the desktop app for live apply.**
 |---|---|
 | [docs/USER-GUIDE.md](docs/USER-GUIDE.md) | Provisioning a fleet: both output paths, what to check, troubleshooting |
 | [docs/API.md](docs/API.md) | HTTP + IPC surfaces, the model catalog, the full apply-step table, export layout |
-| [docs/DEVELOPING.md](docs/DEVELOPING.md) | Two run targets, three tsconfigs, and the catalog invariant |
+| [docs/DEVELOPING.md](docs/DEVELOPING.md) | Three run targets, three tsconfigs, and the catalog invariant |
 
 ## Develop
 

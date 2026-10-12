@@ -17,9 +17,9 @@ skips it, since its bundler needs FUSE on CI.)
 > UI). Nothing needs to be installed — no Node, no separate checkout. Just
 > download and run.
 
-> **Unsigned builds.** By default the installers are unsigned. On macOS,
-> right-click the app → **Open** → **Open** once; on Windows, "More info" →
-> "Run anyway". See [SIGNING.md](SIGNING.md) to produce signed macOS builds.
+> **Signing.** The macOS installers on a release are signed and notarised, so
+> they open normally. The Windows one is unsigned: "More info" → "Run anyway".
+> A copy you build yourself is unsigned on macOS too; see [SIGNING.md](SIGNING.md).
 
 > Prefer a native desktop build with no server at all? The repo's **Electron**
 > app (`npm run dev` at the root, or the platform installers on the main

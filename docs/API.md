@@ -9,7 +9,7 @@ They mirror each other deliberately.
 | [2](#2-ipc-surface-electron-target) | IPC surface (Electron target) | `src/shared/protocol.ts`, `src/preload/index.ts` |
 | [3](#3-the-model-catalog) | The model catalog | `src/shared/models.ts` |
 | [4](#4-what-live-apply-can-and-cannot-set) | What live apply can and cannot set | `src/main/services/networkApply.ts` |
-| [5](#5-export-layout-and-generated-xml) | Export layout and generated XML | `src/main/services/folderExporter.ts`, `xmlGenerator.ts` |
+| [5](#5-export-layout-and-generated-xml) | Export layout and generated XML | `src/main/services/folderExporter.ts`, `src/shared/xmlGenerator.ts` |
 
 > **⚠ `POST /api/network/apply` writes to real switchers.** It connects over the network and
 > applies settings. There is **no authentication on the HTTP API** — see §1.

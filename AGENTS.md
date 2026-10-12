@@ -15,7 +15,7 @@ ATEMs in one place, build each device's configuration through model-aware forms,
 2. **Connect & apply** — push the *settable subset* of the config to a switcher over the
    network via `atem-connection`.
 
-TypeScript, electron-vite + React, vitest. Public repo. Tagged v0.2.1, built and verified.
+TypeScript, electron-vite + React, vitest. Public repo. Released; the latest tag is v0.4.7.
 
 ## 2. Where this sits among the ATEM projects
 
@@ -28,7 +28,7 @@ TypeScript, electron-vite + React, vitest. Public repo. Tagged v0.2.1, built and
 ## 3. Two things make this repo awkward, and both are deliberate
 
 **It has three run targets.** An Electron app (all platforms), a web/av-launcher tray app
-(macOS-only), *and* a hosted build with no backend at all. A change can easily fix one and
+(macOS, Windows and Linux), *and* a hosted build with no backend at all. A change can easily fix one and
 break the others. **Verify the mode your change actually affects** — and if it touches
 shared code, verify all three.
 
@@ -93,7 +93,8 @@ pretending the two are equivalent.
 Log via `say`/`log` from `src/main/diag/`, never `console`. `installElectronDiagnostics()`
 hooks `render-process-gone` and `child-process-gone` — a dead renderer raises nothing the
 main process's `uncaughtException` handler can see. `diag:collect` and `diag:openLogFolder`
-are registered over IPC but **no UI calls them yet**; wiring a button is outstanding.
+are wired to the DiagnosticsPanel in the header. The browser backends have no `diag`, and
+the panel hides itself.
 See [docs/diagnostics.md](docs/diagnostics.md).
 
 ## Notes

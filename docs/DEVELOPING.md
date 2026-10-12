@@ -1,6 +1,6 @@
 # ATEM Fleet Admin — Developing
 
-TypeScript, electron-vite + React, vitest. Two run targets from one repo, three tsconfigs, and
+TypeScript, electron-vite + React, vitest. Three run targets from one repo, three tsconfigs, and
 one invariant that holds the whole thing together.
 
 ---
@@ -55,25 +55,28 @@ update [API.md](API.md) and [USER-GUIDE.md](USER-GUIDE.md), which both carry tha
 
 ---
 
-## 3. Two run targets, and why it's awkward
+## 3. Three run targets, and why it's awkward
 
-**An Electron app (all platforms) *and* a web/av-launcher tray app.** A change can easily fix one
-and break the other.
+**An Electron app (all platforms), a web/av-launcher tray app, *and* a hosted build with no
+backend at all.** A change can easily fix one and break the other.
 
 > **Verify the mode your change actually affects — and if it touches shared code, verify both.**
 
 ```
-src/shared/         config model, model catalog, protocol types   ← used by BOTH
-src/main/services/  xmlGenerator, folderExporter, networkApply    ← used by BOTH
+src/shared/         config model, model catalog, protocol types,
+                    xmlGenerator, names                           ← used by all three
+src/main/services/  folderExporter, networkApply                  ← Electron and the server
 src/main/           Electron main process
 src/preload/        the window.api bridge (Electron)
 src/web/webApi.ts   the same window.api shape over HTTP (web)
+src/web/staticApi.ts  the same shape with no backend (hosted)
 src/server/         Express backend for the web target
-src/renderer/       the React UI                                  ← identical in both
+src/renderer/       the React UI                                  ← identical in all three
 ```
 
 The React UI is identical across targets; **only `window.api` differs** — IPC in Electron, HTTP
-in the browser. `src/server/api.ts` deliberately mirrors `src/shared/protocol.ts`.
+in the browser, nothing at all in the hosted build. `src/server/api.ts` deliberately mirrors
+`src/shared/protocol.ts`.
 
 **One genuine behavioural difference**: Electron's `export.toFolders` opens a directory picker
 and returns `null` on cancel; the HTTP route has no picker and writes straight into the
@@ -115,13 +118,14 @@ CI: `.github/workflows/ci.yml`, `release.yml`, `release-desktop.yml`.
 
 ## 5. Tests
 
-`vitest`, three spec files, all pure — **no hardware, no Electron, no server**:
+`vitest`, four spec files, all pure — **no hardware, no Electron, no server**:
 
 | Spec | Covers |
 |---|---|
 | `xmlGenerator.spec.ts` | the generated `<Profile>` against real ATEM save-file conventions |
 | `folderExporter.spec.ts` | the export layout and name sanitizing |
 | `networkApply.spec.ts` | the apply plan, against a mock switcher |
+| `staticExport.spec.ts` | the hosted build's `.zip` layout and its `MEDIA.txt` manifest |
 
 `buildApplySteps()` is **pure by design** — no I/O, no connection, it just describes what would
 be sent — specifically so the whole apply plan is testable without touching hardware. `AtemLike`

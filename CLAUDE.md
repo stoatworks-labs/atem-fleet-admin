@@ -1,6 +1,6 @@
 # atem-fleet-admin
 
-Provision many Blackmagic ATEMs at once via model-aware forms → loadable XML + media-folder export, or live network apply (atem-connection). Three targets: Electron app (all platforms), web/av-launcher tray app (macOS-only), and a hosted backend-less build (Cloudflare Worker). TypeScript, electron-vite, vitest. Tagged v0.2.1, built & verified.
+Provision many Blackmagic ATEMs at once via model-aware forms → loadable XML + media-folder export, or live network apply (atem-connection). Three targets: Electron app (all platforms), web/av-launcher tray app (macOS, Windows, Linux), and a hosted backend-less build (Cloudflare Worker). TypeScript, electron-vite, vitest. Released; the latest tag is v0.4.7.
 
 ## Commands (npm)
 - Electron dev: `npm run dev`

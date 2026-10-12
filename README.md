@@ -3,8 +3,8 @@
 > **AI-assisted project.** This codebase was created with [Claude](https://claude.com/claude-code)
 > (Anthropic), directed and reviewed by a human author. Check the configurations
 > it generates on your own hardware before a production load, especially the
-> reconstructed Mini streaming/recording XML, which is written from observed files
-> rather than from a published schema.
+> Mini streaming/recording XML, which is reconstructed from the protocol rather
+> than checked against a real Mini save file.
 
 Set up a **whole fleet of Blackmagic ATEM switchers in one go**. Define as many
 ATEMs as you like in one place, build each one's configuration through forms that
@@ -206,8 +206,9 @@ that can't work.
 | **Connect & apply** over the network | ✅ | ❌ |
 | Diagnostics bundle | ✅ | ❌ |
 
-The two exclusions come from the same limitation: a web page can't open a TCP
-socket to a switcher on your LAN, and can't read a file from a path you typed.
+The three exclusions come from the same limitation: a web page can't open a TCP
+socket to a switcher on your LAN, can't read a file from a path you typed, and
+has no log folder on disk to collect into a diagnostics bundle.
 Media pool items still generate correctly in the XML; it's only the source files
 that aren't gathered, so each device folder carries a `MEDIA.txt` naming what to
 load into which slot. **Use the desktop app for live apply.**

@@ -17,13 +17,19 @@ device or push the settable part straight down the network.
 
 ## Pick your run target
 
-The same tool ships two ways, sharing all the provisioning logic:
+The same tool ships three ways, sharing all the provisioning logic:
 
 - **Electron desktop app:** native file dialogs; macOS, Windows and Linux.
 - **Web app + av-launcher tray shell:** a local Node server serving the same UI in a browser,
   wrapped in a menu-bar app.
+- **Hosted build:** the same UI with no server behind it, at
+  [atem-fleet-admin.stoatworks-labs.com](https://atem-fleet-admin.stoatworks-labs.com). The XML
+  is generated in your browser tab, nothing is uploaded, and the export arrives as a `.zip`. It
+  can't reach your LAN, so there's no **Connect & apply**; the README's
+  [What the hosted build can't do](../README.md#what-the-hosted-build-cant-do) has the full list.
 
-The UI is identical. **One behaviour differs, and it matters:**
+The UI is identical. **Between the desktop app and the tray, one behaviour differs, and it
+matters:**
 
 | | Electron | Web / tray |
 |---|---|---|

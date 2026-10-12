@@ -1,35 +1,35 @@
 # ATEM Fleet Admin
 
 > **AI-assisted project.** This codebase was created with [Claude](https://claude.com/claude-code)
-> (Anthropic), directed and reviewed by a human author. Generated configurations
-> — especially the reconstructed Mini streaming/recording XML, which is written
-> from observed files rather than from a published schema — should be checked on
-> your own hardware before a production load.
+> (Anthropic), directed and reviewed by a human author. Check the configurations
+> it generates on your own hardware before a production load, especially the
+> reconstructed Mini streaming/recording XML, which is written from observed files
+> rather than from a published schema.
 
-Provision a **fleet of Blackmagic ATEM switchers at once**. Define any number of
-ATEMs in one place, build each device's configuration through model-aware forms
-(dropdowns + text fields), then either:
+Set up a **whole fleet of Blackmagic ATEM switchers in one go**. Define as many
+ATEMs as you like in one place, build each one's configuration through forms that
+know what that model can do (dropdowns and text fields), then either:
 
-1. **Generate folders** — write a loadable `config.xml` + `Media/` folder per
-   device for manual loading into ATEM Software Control, or
-2. **Connect & apply** — push the settable subset of the config to a switcher
+1. **Generate folders:** write a loadable `config.xml` + `Media/` folder per
+   device, to load by hand into ATEM Software Control, or
+2. **Connect & apply:** push the settable part of the config to a switcher
    over the network via [`atem-connection`](https://www.npmjs.com/package/atem-connection).
 
-Built with electron-vite + React + TypeScript, matching the stack of its sibling
+It's built with electron-vite + React + TypeScript, the same stack as its sibling
 [animATEM](https://github.com/stoatworks-labs/animATEM).
 
-[![Watch it running — 45 seconds](docs/video-thumb.png)](https://www.youtube.com/watch?v=r8oRdKLFgGk)
+[![Watch it running (45 seconds)](docs/video-thumb.png)](https://www.youtube.com/watch?v=r8oRdKLFgGk)
 
-*A 45-second tour of the real app. Two switchers of different models, showing the
-form adapt: a Mini Extreme has Streaming and Recording tabs, a 4 M/E Broadcast
-Studio has SuperSource instead.*
+*A 45-second tour of the actual app. Two switchers of different models, showing the
+form adapt: a Mini Extreme gets Streaming and Recording tabs, and a 4 M/E Broadcast
+Studio gets SuperSource instead.*
 
-![ATEM Fleet Admin — a three-switcher fleet with the Inputs / Outputs tab open on a
+![ATEM Fleet Admin: a three-switcher fleet with the Inputs / Outputs tab open on a
 4 M/E Broadcast Studio 4K](docs/screenshots/fleet-admin.png)
 
-*The same adaptation as a still: three switchers in the sidebar, two models between
-them. The selected 4 M/E exposes a SuperSource tab and twenty inputs with full AUX
-routing — the Mini Extremes above it show neither.*
+*The same thing as a still: three switchers in the sidebar, two models between
+them. The selected 4 M/E has a SuperSource tab and twenty inputs with full AUX
+routing, and the Mini Extremes above it show neither.*
 
 ![Architecture](docs/architecture.svg)
 
@@ -94,16 +94,17 @@ macOS builds are signed and notarised and open normally. The Windows builds are 
 
 ## Why
 
-Configuring ATEMs one at a time in ATEM Software Control — input/output names,
-SuperSource, media pools, streaming/recording, transitions — is slow and
-error-prone across a fleet. Fleet Admin turns it into a single form-driven pass
-with a repeatable, versionable project file (`*.afa.json`).
+Configuring ATEMs one at a time in ATEM Software Control (input/output names,
+SuperSource, media pools, streaming/recording, transitions) is slow, and across a
+fleet it's very easy to get one of them wrong. Fleet Admin turns it into a single
+pass through a set of forms, with a project file (`*.afa.json`) you can repeat and
+keep under version control.
 
 ## Model-aware profiles
 
-Each device is assigned a model. The editor shows only the tabs and options that
-model supports, and the XML generator only emits the sections it has. Phase 1
-ships two profiles spanning the two hardware classes:
+Each device is assigned a model. The editor only shows the tabs and options that
+model supports, and the XML generator only writes the sections it has. Phase 1
+ships two profiles covering the two hardware classes:
 
 | Capability              | ATEM Mini Extreme ISO | ATEM 4 M/E Broadcast Studio 4K |
 | ----------------------- | :-------------------: | :----------------------------: |
@@ -119,7 +120,7 @@ ships two profiles spanning the two hardware classes:
 | SuperSource             |           —           |               ✅               |
 | Multi-M/E               |           —           |           ✅ (4 M/E)           |
 
-Adding a model is a single new entry in [`src/shared/models.ts`](src/shared/models.ts).
+Adding a model is one new entry in [`src/shared/models.ts`](src/shared/models.ts).
 
 ## Fields covered
 
@@ -133,7 +134,7 @@ DVE settings.
 
 ### Generate folders (highest fidelity)
 
-Pick an output directory; Fleet Admin writes:
+Pick an output directory, and Fleet Admin writes:
 
 ```
 <OutputDir>/<FleetName>/<DeviceName>/config.xml
@@ -141,8 +142,8 @@ Pick an output directory; Fleet Admin writes:
 ```
 
 Drag the `Media/` files into the switcher's media pool, then use ATEM Software
-Control's **Load** to apply `config.xml`. The `<Profile>` XML matches the
-element/attribute/nesting conventions of real ATEM save files
+Control's **Load** to apply `config.xml`. The `<Profile>` XML follows the element,
+attribute and nesting conventions of real ATEM save files
 (see [`xmlGenerator.spec.ts`](src/shared/xmlGenerator.spec.ts)).
 
 ### Connect & apply (live)
@@ -150,49 +151,49 @@ element/attribute/nesting conventions of real ATEM save files
 Set a network address on the Project tab and click **Connect & apply selected**.
 The settable subset (input names, AUX routing, SuperSource boxes, media-player
 assignments, transition/FTB rates, streaming service, ISO mode) is applied live.
-Settings the Ethernet protocol can't reach — media-pool uploads, UVC routing,
-recording bitrate — are reported as **folder-export only** so nothing is applied
-silently.
+Settings the Ethernet protocol can't reach (media-pool uploads, UVC routing,
+recording bitrate) are reported as **folder-export only**, so nothing gets left
+out without you being told.
 
-> **Note on Mini streaming/recording XML.** No ATEM Mini save file was available
+> **Note on Mini streaming/recording XML.** There was no ATEM Mini save file to use
 > as ground truth, so the Mini `<Streaming>`/`<Recording>` XML elements are
-> reconstructed from the protocol and should be validated against a real Mini.
-> The live **Connect & apply** path is the authoritative route for those fields.
+> reconstructed from the protocol and should be checked against a real Mini.
+> The live **Connect & apply** path is the one to trust for those fields.
 
 ## Three ways to run it
 
-The same tool ships as **three targets** from this one repo, sharing all the
+The same tool comes as **three targets** from this one repo, all sharing the
 provisioning logic (`src/shared`):
 
-1. **Electron desktop app** — the native app (`npm run dev`), packaged as
-   installers on the main release. Uses IPC + native file dialogs.
-2. **Web app + av-launcher tray shell** — a local Node server (`src/server`)
-   serving the same React UI in the browser, wrapped by the fleet's
+1. **Electron desktop app:** the native app (`npm run dev`), packaged as
+   installers on the main release. It uses IPC and native file dialogs.
+2. **Web app + av-launcher tray shell:** a local Node server (`src/server`)
+   serving the same React UI in the browser, wrapped in the fleet's
    [av-launcher](https://github.com/stoatworks-labs/av-launcher) shell so it lives
-   in the menu bar (pick interface + port, Start/Stop, Open). Ships as a
-   self-contained desktop app with an embedded Node runtime — see
-   [`launcher/`](launcher). This matches how the sibling
-   [atem-overseer](https://github.com/stoatworks-labs/atem-overseer) ships. The
+   in the menu bar (pick interface + port, Start/Stop, Open). It ships as a
+   self-contained desktop app with its own Node runtime inside; see
+   [`launcher/`](launcher). That's how the sibling
+   [atem-overseer](https://github.com/stoatworks-labs/atem-overseer) ships too. The
    tray app ships for macOS, Windows and Linux (`.deb`/`.rpm`).
-3. **Hosted build — no install, no backend.** The same React UI with no server
-   behind it at all (`npm run static:build`), publishable as static assets on a
-   Cloudflare Worker. Every ATEM profile is generated in your own tab by the same
-   `generateDeviceXml` the desktop app runs, and the export arrives as a `.zip`
-   of the identical folder tree. **Nothing is uploaded** — your fleet file never
-   leaves your machine. Live at
+3. **Hosted build, with no install and no backend.** The same React UI with no
+   server behind it at all (`npm run static:build`), publishable as static assets
+   on a Cloudflare Worker. Every ATEM profile is generated in your own tab by the
+   same `generateDeviceXml` the desktop app runs, and the export arrives as a
+   `.zip` of the identical folder tree. **Nothing is uploaded**, so your fleet file
+   never leaves your machine. It's live at
    **[atem-fleet-admin.stoatworks-labs.com](https://atem-fleet-admin.stoatworks-labs.com)**.
 
-[![Watch the browser build — 47 seconds](docs/video-web-thumb.png)](https://www.youtube.com/watch?v=s6JW94yhUHs)
+[![Watch the browser build (47 seconds)](docs/video-web-thumb.png)](https://www.youtube.com/watch?v=s6JW94yhUHs)
 
 *A 47-second tour of the hosted build, filmed at that address: a four-switcher
 fleet built from scratch, the forms adapting to each model, and a `.zip` of
-loadable `config.xml` folders assembled in the tab. The festival and its
-addresses are invented; the export is real.*
+loadable `config.xml` folders put together in the tab. The festival and its
+addresses are made up; the export is real.*
 
 The React UI is identical across all three; only `window.api` differs (Electron
-IPC, HTTP, or nothing — see [`src/web/`](src/web)). Each backend declares what it
+IPC, HTTP, or nothing; see [`src/web/`](src/web)). Each backend declares what it
 can do through `capabilities`, and the UI adapts rather than offering buttons
-that cannot work.
+that can't work.
 
 ### What the hosted build can't do
 
@@ -205,11 +206,11 @@ that cannot work.
 | **Connect & apply** over the network | ✅ | ❌ |
 | Diagnostics bundle | ✅ | ❌ |
 
-The two exclusions are the same limitation: a web page cannot open a TCP socket
-to a switcher on your LAN, and cannot read a file from a path you typed. Media
-pool items still generate correctly in the XML — only the source files aren't
-gathered, so each device folder carries a `MEDIA.txt` naming what to load into
-which slot. **Use the desktop app for live apply.**
+The two exclusions come from the same limitation: a web page can't open a TCP
+socket to a switcher on your LAN, and can't read a file from a path you typed.
+Media pool items still generate correctly in the XML; it's only the source files
+that aren't gathered, so each device folder carries a `MEDIA.txt` naming what to
+load into which slot. **Use the desktop app for live apply.**
 
 ## Documentation
 
@@ -249,17 +250,17 @@ built by `.github/workflows/release-desktop.yml` (see [`launcher/README.md`](lau
 
 ## Architecture
 
-- [`src/shared/`](src/shared) — `models.ts` (capability profiles), `config.ts`
+- [`src/shared/`](src/shared): `models.ts` (capability profiles), `config.ts`
   (the single source-of-truth data model), `protocol.ts` (IPC types + backend
   capabilities), `xmlGenerator.ts` and `names.ts`. Everything here is pure and
   runs unchanged in Electron, in Node and in a browser tab.
-- [`src/main/services/`](src/main/services) — `folderExporter.ts`,
-  `fleetStore.ts`, `networkApply.ts`: the parts that need a filesystem or a
+- [`src/main/services/`](src/main/services): `folderExporter.ts`,
+  `fleetStore.ts` and `networkApply.ts`, the parts that need a filesystem or a
   socket.
-- [`src/web/`](src/web) — the two browser backends (`webApi.ts` over HTTP,
+- [`src/web/`](src/web): the two browser backends (`webApi.ts` over HTTP,
   `staticApi.ts` over nothing) and the in-browser archive builder.
-- [`src/renderer/src/`](src/renderer/src) — React UI: fleet sidebar +
-  capability-gated tabbed device editor + export bar.
+- [`src/renderer/src/`](src/renderer/src): the React UI, with the fleet sidebar,
+  a capability-gated tabbed device editor and the export bar.
 
 ## Disclaimer
 
@@ -268,21 +269,21 @@ Blackmagic Design.
 
 ## Windows SmartScreen & Defender Firewall
 
-macOS builds are **Developer ID-signed and notarised by Apple** — they open
+macOS builds are **Developer ID-signed and notarised by Apple**, so they open
 normally, with no Gatekeeper warning and no quarantine step. The Windows
-binaries are **not** code-signed, so Windows still warns you the first time.
+binaries **aren't** code-signed, so Windows still warns you the first time.
 
-- **Windows** — SmartScreen shows *"Windows protected your PC"* →
+- **Windows**: SmartScreen shows *"Windows protected your PC"* →
   **More info** → **Run anyway**.
-- **Windows Defender Firewall** — first launch pops *"Allow ATEM Fleet Admin to
-  communicate on these networks"*. Tick **Private** (and **Domain** on a managed
-  network) — ATEM Fleet Admin needs it to serve the web UI and push configuration to
-  ATEMs over the network. Deny it and "Connect & apply" will fail — the folder-export
-  path still works offline.
-- **Linux** — no signing gate.
+- **Windows Defender Firewall**: the first launch pops up *"Allow ATEM Fleet Admin
+  to communicate on these networks"*. Tick **Private** (and **Domain** on a managed
+  network). ATEM Fleet Admin needs it to serve the web UI and push configuration to
+  ATEMs over the network. Deny it and "Connect & apply" will fail, though the
+  folder-export path still works offline.
+- **Linux**: no signing gate.
 
-Per-artifact steps, self-signing, checksum verification and the Defender Firewall reset
-procedure: **[docs/UNSIGNED.md](docs/UNSIGNED.md)**.
+Per-artifact steps, self-signing, checksum verification and the Defender Firewall
+reset procedure are in **[docs/UNSIGNED.md](docs/UNSIGNED.md)**.
 
 ## License
 

@@ -40,6 +40,16 @@ An npm dependency.
 
 The UI layer for the browser tools and the Electron and Tauri front ends.
 
+### fflate
+
+<https://github.com/101arrowz/fflate>  
+Licence: MIT  
+Copyright: Arjun Barrett
+
+An npm dependency, bundled into the page.
+
+Zip and deflate in plain JavaScript, fast enough to use in a browser. Office documents, OpenDocument files and most multi-file downloads are zip packages underneath.
+
 ### The Rust crate ecosystem
 
 <https://crates.io>  

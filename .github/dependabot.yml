@@ -6,6 +6,8 @@
 #
 # Deliberately no `ignore:` rules — an ignore also suppresses the *security*
 # update for that dependency, which is exactly the PR worth having.
+# The exception is the npm `ignore:` below: majors that cannot install yet.
+# It holds the major only, so patches to the current line still come through.
 version: 2
 updates:
   - package-ecosystem: "github-actions"
@@ -24,6 +26,22 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    # Majors that cannot install yet (checked 2026-10-22). Each one fails `npm ci`
+    # with ERESOLVE, so its PR could never go green. Delete a line once its
+    # blocker lifts and Dependabot offers the major again.
+    ignore:
+      # typescript-eslint 8.72 peers typescript <6.1.0, so TypeScript 7 is out
+      # until it widens that range.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # eslint-plugin-react 7.37.5 peers eslint ^9.7 at most, so eslint 10 is out
+      # until a release accepts it.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      # @electron-toolkit/eslint-config-ts 4 brings @eslint/js 10, which peers
+      # eslint ^10: held for the same reason as eslint.
+      - dependency-name: "@electron-toolkit/eslint-config-ts"
+        update-types: ["version-update:semver-major"]
     groups:
       # Peer-locked families move together, whatever the bump size. A major that
       # arrives for one member without the others is how react 19 shipped against

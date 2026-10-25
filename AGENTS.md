@@ -15,7 +15,7 @@ ATEMs in one place, build each device's configuration through model-aware forms,
 2. **Connect & apply** — push the *settable subset* of the config to a switcher over the
    network via `atem-connection`.
 
-TypeScript, electron-vite + React, vitest. Public repo. Released; the latest tag is v0.4.8.
+TypeScript, electron-vite + React, vitest. Public repo. Released; the latest tag is v0.4.9.
 
 ## 2. Where this sits among the ATEM projects
 

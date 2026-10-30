@@ -22,7 +22,7 @@ Provision many Blackmagic ATEMs at once via model-aware forms → loadable XML +
 - Three run modes: Electron (`dev`), web (`web`), hosted (`preview:static`). Verify the mode your change affects.
 - Components must branch on `window.api.capabilities`, never on "is this Electron". The hosted build has no LAN, so live apply is hidden there.
 - Model-aware forms → keep the ATEM model catalog authoritative for both XML export and live apply.
-- Public repo. Multi-platform release CI; cross-compile macOS x86_64 on macos-14 (never macos-13). "Commit" = commit **and** push.
+- Public repo. Multi-platform release CI; cross-compile macOS x86_64 on macos-15 (never macos-13). "Commit" = commit **and** push.
 
 ## Diagnostics
 

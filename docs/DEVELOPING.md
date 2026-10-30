@@ -172,7 +172,7 @@ unauthenticated endpoint.
 
 ## 8. Conventions
 
-- Multi-platform release CI; **cross-compile macOS x86_64 on `macos-14` — never `macos-13`.**
+- Multi-platform release CI; **cross-compile macOS x86_64 on `macos-15` — never `macos-13`.**
 - Ships an **av-launcher** tray target. Note the macOS Gatekeeper trap common to all av-launcher
   apps: for an unsigned `.app` bundling helper binaries, **approving the app does not
   unquarantine its payload** — helpers are SIGKILLed silently. See

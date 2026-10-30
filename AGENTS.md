@@ -82,7 +82,7 @@ pretending the two are equivalent.
 
 ## 6. Conventions
 
-- Multi-platform release CI; cross-compile macOS x86_64 on `macos-14` — never `macos-13`.
+- Multi-platform release CI; cross-compile macOS x86_64 on `macos-15` — never `macos-13`.
 - Ships an av-launcher tray target: note the macOS Gatekeeper trap where an unsigned `.app`
   bundling helper binaries doesn't unquarantine its payload, and helpers are SIGKILLed
   silently.

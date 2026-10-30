@@ -22,7 +22,7 @@ jobs:
         include:
           - { name: linux, os: ubuntu-latest, platform: '--linux' }
           - { name: windows, os: windows-latest, platform: '--win' }
-          - { name: macos, os: macos-14, platform: '--mac' }
+          - { name: macos, os: macos-15, platform: '--mac' }
     steps:
       - uses: actions/checkout@v7
 

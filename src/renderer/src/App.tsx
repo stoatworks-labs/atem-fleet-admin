@@ -50,7 +50,7 @@ function App(): React.JSX.Element {
             className="header-link"
             href="https://stoatworks-labs.com/web-tools/atem-fleet-admin/"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             On Stoatworks Labs
           </a>

@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ATEM Fleet Admin</title>
-    <meta name="description" content="Provision a whole fleet of Blackmagic ATEM switchers at once, in a browser. Model-aware configuration forms export loadable XML plus a media folder, or apply the settings live over the network.">
+    <title>ATEM Fleet Admin — Build every switcher's config, download the folders</title>
+    <meta name="description" content="Set up a whole fleet of Blackmagic ATEM switchers at once: model-aware forms build a loadable config.xml and folder for each one. Free, and it runs in the browser.">
     <link rel="canonical" href="https://atem-fleet-admin.stoatworks-labs.com/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Stoatworks Labs">
     <meta property="og:locale" content="en_GB">
     <meta property="og:url" content="https://atem-fleet-admin.stoatworks-labs.com/">
-    <meta property="og:title" content="ATEM Fleet Admin">
-    <meta property="og:description" content="Provision a whole fleet of Blackmagic ATEM switchers at once, in a browser. Model-aware configuration forms export loadable XML plus a media folder, or apply the settings live over the network.">
+    <meta property="og:title" content="ATEM Fleet Admin — Build every switcher's config, download the folders">
+    <meta property="og:description" content="Set up a whole fleet of Blackmagic ATEM switchers at once: model-aware forms build a loadable config.xml and folder for each one. Free, and it runs in the browser.">
     <!-- Card hosted on the main site: it is regenerated in place by the
          website's make_thumbnails.py and keeps its filename, so a copy
          vendored here would go stale without anything saying so. -->
@@ -22,6 +22,37 @@
     <meta property="og:image:alt" content="ATEM Fleet Admin">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://stoatworks-labs.com/thumbs/atem-fleet-admin-web.png">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "@id": "https://atem-fleet-admin.stoatworks-labs.com#app",
+        "name": "ATEM Fleet Admin",
+        "url": "https://atem-fleet-admin.stoatworks-labs.com",
+        "description": "Set up a whole fleet of Blackmagic ATEM switchers at once: model-aware forms build a loadable config.xml and folder for each one. Free, and it runs in the browser.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any (runs in a web browser)",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "GBP"
+        },
+        "author": {
+          "@id": "https://stoatworks-labs.com/#organization",
+          "@type": "Organization",
+          "name": "Stoatworks Labs",
+          "url": "https://stoatworks-labs.com/"
+        },
+        "publisher": {
+          "@id": "https://stoatworks-labs.com/#organization"
+        },
+        "sameAs": [
+          "https://stoatworks-labs.com/web-tools/atem-fleet-admin/",
+          "https://github.com/stoatworks-labs/atem-fleet-admin"
+        ]
+      }
+    </script>
     <link rel="manifest" href="/manifest.webmanifest" />
     <!-- iOS ignores the manifest's icons entirely and wants a PNG of its own. -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -29,6 +60,18 @@
     <meta name="theme-color" content="#0f1013" />
   </head>
   <body>
+    <noscript>
+      <h1>ATEM Fleet Admin</h1>
+      <p>Set up a whole fleet of ATEM switchers in one go. Model-aware forms export a loadable XML and a media folder for each one, so you're not doing them one at a time on a flight case at 02:00.</p>
+      <p>This is the hosted build, with no install and no backend. Every ATEM profile is generated in your own tab by the same code the desktop app runs, and the export arrives as a .zip of the identical folder tree. Nothing is uploaded. Connecting to a switcher and applying the settings live needs the desktop app, because a web page can't open a socket to a switcher on your network.</p>
+      <p>It needs JavaScript to run.</p>
+      <ul>
+        <li><a href="https://stoatworks-labs.com/web-tools/atem-fleet-admin/">ATEM Fleet Admin on Stoatworks Labs</a></li>
+        <li><a href="https://stoatworks-labs.com/software/atem-fleet-admin/">Project page</a></li>
+        <li><a href="https://stoatworks-labs.com/software/atem-fleet-admin/guide/">User guide</a></li>
+        <li><a href="https://github.com/stoatworks-labs/atem-fleet-admin">Source code on GitHub</a></li>
+      </ul>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="./main.tsx"></script>
     <!--

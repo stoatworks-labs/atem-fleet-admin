@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atem-fleet-admin.stoatworks-labs.com/sitemap.xml

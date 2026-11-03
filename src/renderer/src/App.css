@@ -99,6 +99,11 @@ select:focus {
   display: flex;
   gap: 8px;
 }
+.header-link {
+  align-self: center;
+  color: inherit;
+  font-size: 12px;
+}
 
 .body {
   display: flex;

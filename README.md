@@ -18,6 +18,8 @@ know what that model can do (dropdowns and text fields), then either:
 It's built with electron-vite + React + TypeScript, the same stack as its sibling
 [animATEM](https://github.com/stoatworks-labs/animATEM).
 
+The [project page](https://stoatworks-labs.com/software/atem-fleet-admin/) has the downloads, the user guide and the video. The browser build is at [atem-fleet-admin.stoatworks-labs.com](https://atem-fleet-admin.stoatworks-labs.com), with a [page of its own](https://stoatworks-labs.com/web-tools/atem-fleet-admin/) on Stoatworks Labs.
+
 [![Watch it running (45 seconds)](docs/video-thumb.png)](https://www.youtube.com/watch?v=r8oRdKLFgGk)
 
 *A 45-second tour of the actual app. Two switchers of different models, showing the

@@ -1,0 +1,16 @@
+# ATEM Fleet Admin
+
+> Build every switcher's config, download the folders
+
+Set up a whole fleet of ATEM switchers in one go. Model-aware forms export a loadable XML and a media folder for each one, so you're not doing them one at a time on a flight case at 02:00.
+
+This is the hosted build, with no install and no backend. Every ATEM profile is generated in your own tab by the same code the desktop app runs, and the export arrives as a .zip of the identical folder tree. Nothing is uploaded. Connecting to a switcher and applying the settings live needs the desktop app, because a web page can't open a socket to a switcher on your network.
+
+It runs in the browser at https://atem-fleet-admin.stoatworks-labs.com/ and is free to use.
+
+## Links
+
+- [ATEM Fleet Admin on Stoatworks Labs](https://stoatworks-labs.com/web-tools/atem-fleet-admin/): what it is, with links to everything else
+- [Project page](https://stoatworks-labs.com/software/atem-fleet-admin/)
+- [User guide](https://stoatworks-labs.com/software/atem-fleet-admin/guide/)
+- [Source code](https://github.com/stoatworks-labs/atem-fleet-admin)

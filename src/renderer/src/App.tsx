@@ -44,6 +44,16 @@ function App(): React.JSX.Element {
           <button type="button" data-stoatworks-about>
             About
           </button>
+          {/* A new tab in a browser; in the desktop app setWindowOpenHandler
+              hands it to the system browser, so the window never navigates. */}
+          <a
+            className="header-link"
+            href="https://stoatworks-labs.com/web-tools/atem-fleet-admin/"
+            target="_blank"
+            rel="noopener"
+          >
+            On Stoatworks Labs
+          </a>
         </div>
       </header>
 

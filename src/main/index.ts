@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, ipcMain, nativeTheme, shell } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import type { DeviceConfig, FleetProject } from '../shared/config'
@@ -27,6 +27,13 @@ if (process.argv.includes('--collect-diagnostics')) {
   app.exit(0)
 }
 
+/** The shared theme's paper colour for the system's light or dark setting, which
+ *  the page follows. The window shows it before the first paint and wherever a
+ *  resize outruns the renderer, so a fixed dark one flashed in light mode. */
+function paperColour(): string {
+  return nativeTheme.shouldUseDarkColors ? '#0b1621' : '#fafaf8'
+}
+
 function createWindow(): BrowserWindow {
   const mainWindow = new BrowserWindow({
     width: 1280,
@@ -35,7 +42,7 @@ function createWindow(): BrowserWindow {
     minHeight: 640,
     show: false,
     autoHideMenuBar: true,
-    backgroundColor: '#0f1013',
+    backgroundColor: paperColour(),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -63,6 +70,11 @@ app.whenReady().then(() => {
 
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
+  })
+
+  // The page repaints itself when the system switches mode; the window follows.
+  nativeTheme.on('updated', () => {
+    for (const win of BrowserWindow.getAllWindows()) win.setBackgroundColor(paperColour())
   })
 
   createWindow()

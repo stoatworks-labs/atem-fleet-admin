@@ -1,6 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+// Vendored from stoatworks-backend/theme by scripts/sync-theme.sh: never edit here. First, so App.css layers over it.
+import './stoatworks-theme.css'
 import './App.css'
 
 // The About dialog's data file ships a version baked at sync time; this is the

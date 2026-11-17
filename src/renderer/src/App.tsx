@@ -23,11 +23,13 @@ function App(): React.JSX.Element {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <div className="brand">
-          <span className="brand-mark">▦</span>
+      <header className="app-header sw-bar">
+        <span className="sw-brand">
+          <span className="sw-mark" aria-hidden="true">
+            ☰
+          </span>
           <span className="brand-name">ATEM Fleet Admin</span>
-        </div>
+        </span>
         <input
           className="fleet-name"
           value={fleet.name}
@@ -38,12 +40,6 @@ function App(): React.JSX.Element {
           <button onClick={open}>Open…</button>
           <button onClick={save}>Save…</button>
           <DiagnosticsPanel />
-          {/* Opens the shared About dialog — see public/about.js, which delegates
-              this attribute from the document, so nothing needs importing here.
-              One dialog for all three builds: desktop, local server and hosted. */}
-          <button type="button" data-stoatworks-about>
-            About
-          </button>
           {/* A new tab in a browser; in the desktop app setWindowOpenHandler
               hands it to the system browser, so the window never navigates. */}
           <a
@@ -54,6 +50,13 @@ function App(): React.JSX.Element {
           >
             On Stoatworks Labs
           </a>
+          {/* Opens the shared About dialog — see public/about.js, which delegates
+              this attribute from the document, so nothing needs importing here.
+              One dialog for all three builds: desktop, local server and hosted.
+              Last, at the right-hand end of the navy bar, as on every tool. */}
+          <button type="button" data-stoatworks-about>
+            About
+          </button>
         </div>
       </header>
 

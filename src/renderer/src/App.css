@@ -1,15 +1,16 @@
+/* Colours come from the shared Stoatworks theme (stoatworks-theme.css, imported
+   first in both entries), so the app follows the system's light or dark setting. */
 :root {
-  --bg: #0f1013;
-  --panel: #17191f;
-  --panel-2: #1e2129;
-  --border: #2a2e38;
-  --text: #e6e8ee;
-  --muted: #8b90a0;
-  --accent: #4b8bff;
-  --accent-2: #2f6bd6;
-  --danger: #ff5a5a;
-  --ok: #47c26a;
-  --warn: #e0a34a;
+  --bg: var(--sw-paper);
+  --panel: var(--sw-card);
+  --panel-2: var(--sw-tint);
+  --border: var(--sw-line);
+  --text: var(--sw-ink);
+  --muted: var(--sw-muted);
+  --accent: var(--sw-accent);
+  --danger: var(--sw-bad);
+  --ok: var(--sw-ok);
+  --warn: var(--sw-warn);
 }
 
 * {
@@ -20,16 +21,16 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--sw-font);
   font-size: 13px;
 }
 
 button {
   font: inherit;
   color: var(--text);
-  background: var(--panel-2);
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   padding: 6px 12px;
   cursor: pointer;
 }
@@ -41,8 +42,13 @@ button:disabled {
   cursor: default;
 }
 button.primary {
-  background: var(--accent-2);
+  background: var(--accent);
   border-color: var(--accent);
+  color: var(--sw-on-accent);
+  font-weight: 600;
+}
+button.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
 }
 button.danger {
   color: var(--danger);
@@ -54,9 +60,9 @@ input[type='text'],
 input[type='number'] {
   font: inherit;
   color: var(--text);
-  background: var(--panel-2);
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   padding: 6px 8px;
   width: 100%;
 }
@@ -72,27 +78,39 @@ select:focus {
   height: 100vh;
 }
 
+/* The navy bar (sw-bar). The bare button and input rules above would beat the
+   theme's bar styles, so the bar's own are restated here. */
 .app-header {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 10px 16px;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
+  padding: 8px 16px;
+  min-height: 48px;
 }
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
+.app-header button,
+.app-header .diagnostics-toggle {
+  background: transparent;
+  color: var(--sw-navy-ink);
+  border-color: var(--sw-navy-line);
+  padding: 4px 12px;
 }
-.brand-mark {
-  color: var(--accent);
-  font-size: 18px;
+.app-header button:hover:not(:disabled),
+.app-header .diagnostics-toggle:hover {
+  color: var(--sw-navy-ink);
+  border-color: var(--sw-accent-soft);
 }
 .fleet-name {
+  font: inherit;
   max-width: 320px;
   font-weight: 500;
+  padding: 5px 8px;
+  border-radius: var(--sw-radius-sm);
+  border: 1px solid var(--sw-navy-line);
+  background: var(--sw-navy-tint);
+  color: var(--sw-navy-ink);
+}
+.fleet-name:focus {
+  border-color: var(--sw-accent-soft);
 }
 .header-actions {
   margin-left: auto;
@@ -101,7 +119,7 @@ select:focus {
 }
 .header-link {
   align-self: center;
-  color: inherit;
+  color: var(--sw-navy-ink-2);
   font-size: 12px;
 }
 
@@ -138,7 +156,7 @@ select:focus {
   align-items: center;
   justify-content: space-between;
   padding: 8px 10px;
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   cursor: pointer;
   border: 1px solid transparent;
 }
@@ -146,7 +164,7 @@ select:focus {
   background: var(--panel-2);
 }
 .device-item.selected {
-  background: var(--panel-2);
+  background: color-mix(in srgb, var(--accent) 10%, var(--panel));
   border-color: var(--accent);
 }
 .device-item-main {
@@ -251,10 +269,9 @@ select:focus {
 .tab-columns h3,
 .tab-body h3 {
   margin: 0 0 10px;
-  font-size: 13px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .field {
@@ -272,9 +289,9 @@ select:focus {
 }
 .readonly {
   padding: 6px 8px;
-  background: var(--panel);
+  background: var(--panel-2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   color: var(--muted);
 }
 
@@ -296,7 +313,7 @@ select:focus {
 .pill {
   background: var(--panel-2);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--sw-radius-sm);
   padding: 4px 8px;
   min-width: 34px;
   text-align: center;
@@ -315,8 +332,9 @@ select:focus {
 }
 
 .ss-box {
+  background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--sw-radius);
   padding: 12px;
   margin-bottom: 12px;
 }
@@ -400,7 +418,7 @@ select:focus {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--muted);
-  border-radius: 3px;
+  border-radius: var(--sw-radius-sm);
   padding: 4px 10px;
   font-size: 12px;
   cursor: pointer;
@@ -416,7 +434,7 @@ select:focus {
   padding: 10px;
   background: var(--panel-2);
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--sw-radius-sm);
 }
 
 .diagnostics-hint {
@@ -436,7 +454,7 @@ select:focus {
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text);
-  border-radius: 3px;
+  border-radius: var(--sw-radius-sm);
   padding: 5px 10px;
   font-size: 12px;
   cursor: pointer;
